@@ -1,4 +1,4 @@
-package com.duolingo.app.scenes.base.view
+package com.duolingo.app.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,8 +8,10 @@ import androidx.viewbinding.ViewBinding
 import com.duolingo.app.DuoApplication
 import com.duolingo.app.di.components.ActivityComponent
 import com.duolingo.app.di.components.ApplicationComponent
+import dagger.hilt.android.AndroidEntryPoint
 
-abstract class ABaseActivity<VB : ViewBinding> : AppCompatActivity() {
+@AndroidEntryPoint
+abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
 
     private val applicationComponent: ApplicationComponent by lazy {
         (application as DuoApplication).appComponent
@@ -27,6 +29,7 @@ abstract class ABaseActivity<VB : ViewBinding> : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = bindingInflater(layoutInflater)
         setContentView(binding.root)
+        applicationComponent
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

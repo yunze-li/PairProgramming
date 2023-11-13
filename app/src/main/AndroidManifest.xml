@@ -11,8 +11,8 @@
         android:theme="@style/Base.Theme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".scenes.path.PathActivity"
-            android:theme="@style/Splash.Theme"
+            android:name=".user.UserListActivity"
+            android:theme="@style/Base.Theme"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +20,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".scenes.repo.RepoActivity" />
     </application>
 
 </manifest>

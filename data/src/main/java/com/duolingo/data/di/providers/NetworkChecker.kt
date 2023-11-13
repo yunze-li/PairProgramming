@@ -5,10 +5,12 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
+import javax.inject.Singleton
 
 /**
  * A network checker which checks if the device is connected to the internet.
  */
+@Singleton
 class NetworkChecker(private val context: Context) {
 
     @Suppress("DEPRECATION")

@@ -1,7 +1,7 @@
 package com.duolingo.app
 
 import android.util.Log
-import com.duolingo.domain.usecases.base.Logger
+import com.duolingo.domain.base.Logger
 
 /** An implementation of [Logger] that uses [Log] to log messages. */
 class LoggerImpl: Logger {

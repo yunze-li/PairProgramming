@@ -9,11 +9,16 @@ import com.duolingo.domain.model.id.LongId
 import com.duolingo.domain.repository.UserRepository
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
+import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * [RepoRepository] for retrieving user data.
  */
-class UserDataRepository(
+@Singleton
+class UserDataRepository
+@Inject
+constructor(
     private val duoApi: DuoApi,
     private val networkChecker: NetworkChecker,
     private val userConverter: UserConverter,

@@ -4,7 +4,6 @@ import android.app.Application
 import com.duolingo.data.di.components.DataComponent
 import com.duolingo.app.di.PerApplication
 import com.duolingo.app.di.modules.ApplicationModule
-import com.duolingo.app.di.modules.UseCaseModule
 import dagger.BindsInstance
 import dagger.Component
 
@@ -14,7 +13,7 @@ import dagger.Component
 @PerApplication // Constraints this component to one-per-application or unscoped bindings.
 @Component(
     dependencies = [(DataComponent::class)],
-    modules = [(ApplicationModule::class), (UseCaseModule::class)]
+    modules = [(ApplicationModule::class)]
 )
 interface ApplicationComponent {
 

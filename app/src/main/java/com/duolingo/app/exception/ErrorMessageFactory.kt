@@ -4,14 +4,17 @@ import android.content.Context
 import com.duolingo.domain.exception.NoConnectedException
 import com.duolingo.domain.exception.PersistenceException
 import com.duolingo.app.R
-import timber.log.Timber
+import com.duolingo.domain.base.Logger
 import javax.inject.Inject
 
 /**
  * Factory used to create error messages from an Exception as a condition.
  */
 open class ErrorMessageFactory
-@Inject internal constructor(private val context: Context) {
+@Inject internal constructor(
+    private val context: Context,
+    private val logger: Logger,
+    ) {
 
     /**
      * Creates a String representing an error message.
@@ -24,7 +27,7 @@ open class ErrorMessageFactory
                 is NoConnectedException -> context.getString(R.string.error_no_connection)
                 is PersistenceException -> context.getString(R.string.error_persistence)
                 else -> context.getString(R.string.error_generic)
-            }.apply { Timber.e(it) }
+            }.apply { logger.logError(this, it) }
         } ?: getGenericError()
 
     private fun getGenericError() = context.getString(R.string.error_generic)

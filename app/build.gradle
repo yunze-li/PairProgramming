@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android' version '2.48.1' apply false
     id 'com.github.ben-manes.versions'
     id 'com.adarshr.test-logger'
 }
@@ -48,8 +49,8 @@ android {
         testBuildType 'debugTest'
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
         jvmTarget = "17"
@@ -60,6 +61,7 @@ android {
         }
     }
     buildFeatures {
+        buildConfig true
         viewBinding true
     }
     lint {
@@ -71,9 +73,12 @@ dependencies {
     // MODULE
     implementation project(':data')
     implementation project(':domain')
+    implementation project(':rxjava')
 
     // ANDROIDX
+    implementation androidXActivityKtx
     implementation androidXAppCompat
+    implementation androidXFragmentKtx
     implementation androidXRecyclerView
     implementation androidXSwipeRefresh
     implementation materialDesign
@@ -84,17 +89,17 @@ dependencies {
     implementation rxKotlin
     implementation rxBinding
     implementation rxBindingSwipeRefreshlayout
+
     // CODE GENERATION
     implementation dagger
+    implementation daggerAutoCore
+    implementation hiltAndroid
     kapt daggerCompiler
-
-    // DEBUG TOOLS
-    implementation timber
 
     // TEST
     testImplementation junit
-    testImplementation mockitoInline
-    testImplementation mockitoKotlin
+    testImplementation mockk
+    testImplementation mockkAndroid
 
     // ANDROID TEST
     androidTestImplementation multidexInstrumentation

@@ -14,8 +14,7 @@ dependencies {
 
     // TEST
     testImplementation junit
-    testImplementation mockitoInline
-    testImplementation mockitoKotlin
+    testImplementation mockk
 
     // DEPENDENCY CHECK STRATEGY
     dependencyUpdates.resolutionStrategy dependencyUpdatesStrategy

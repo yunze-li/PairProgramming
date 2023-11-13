@@ -7,9 +7,9 @@ plugins {
 }
 
 android {
-    compileSdkVersion androidCompileSdkVersion
     namespace 'com.duolingo.data'
     defaultConfig {
+        compileSdk androidCompileSdkVersion
         minSdkVersion androidMinSdkVersion
         testInstrumentationRunner packageAndroidJUnitRunner
     }
@@ -63,7 +63,6 @@ dependencies {
     api retrofitAdapterRxJava
 
     // DEBUG TOOLS
-    implementation timber
     debugImplementation chuckerDebug
     debugTestImplementation chuckerRelease
     releaseImplementation chuckerRelease
