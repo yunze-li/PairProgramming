@@ -1,0 +1,80 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'com.github.ben-manes.versions'
+    id 'com.adarshr.test-logger'
+}
+
+android {
+    compileSdkVersion androidCompileSdkVersion
+    namespace 'com.duolingo.data'
+    defaultConfig {
+        minSdkVersion androidMinSdkVersion
+        testInstrumentationRunner packageAndroidJUnitRunner
+    }
+    buildTypes {
+        debug {
+            minifyEnabled true
+            consumerProguardFiles modelRules, supportRules, apacheRules, gsonRules, okhttp3Rules, retrofit2Rules
+        }
+        release {
+            minifyEnabled true
+            consumerProguardFiles modelRules, supportRules, apacheRules, gsonRules, okhttp3Rules, retrofit2Rules
+        }
+        // For Android Test
+        debugTest {
+            initWith(debug)
+            minifyEnabled false
+        }
+        testBuildType 'debugTest'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    // MODULE
+    implementation project(':domain')
+
+    // SUPPORT
+    api androidXCore
+    // COMPONENTS
+    api room
+    kapt roomCompiler
+    // DAGGER
+    implementation dagger
+    kapt daggerCompiler
+    // RX
+    implementation rxAndroid
+    implementation rxJava
+    implementation rxKotlin
+    // WEBSERVICES
+    api retrofitConverterGson
+    api retrofitAdapterRxJava
+
+    // DEBUG TOOLS
+    implementation timber
+    debugImplementation chuckerDebug
+    debugTestImplementation chuckerRelease
+    releaseImplementation chuckerRelease
+
+    // TEST
+    testImplementation junit
+    testImplementation androidXTestRunner
+    testImplementation mockitoInline
+    testImplementation mockitoKotlin
+
+    // ANDROID TEST
+    androidTestImplementation androidXTestRunner
+    androidTestImplementation androidXTestJunit
+    androidTestImplementation espressoCore
+
+    // DEPENDENCY CHECK STRATEGY
+    dependencyUpdates.resolutionStrategy dependencyUpdatesStrategy
+}

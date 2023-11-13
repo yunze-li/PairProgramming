@@ -1,0 +1,110 @@
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+ext {
+    // APP VERSION
+    androidVersionCode          = 1
+    androidVersionName          = '1.0.0'
+
+    // ANDROID VERSION
+    androidCompileSdkVersion    = 33
+    androidMinSdkVersion        = 26
+    androidTargetSdkVersion     = androidCompileSdkVersion
+
+    // DEFAULT INFO
+    packageAndroidJUnitRunner   = "androidx.test.runner.AndroidJUnitRunner"
+    defaultFlavorDimensions     = "default"
+
+    // ANDROID LIB
+    androidXCore                = "androidx.core:core:1.8.0"
+    androidXAnnotation          = "androidx.annotation:annotation:1.4.0"
+    androidXAppCompat           = "androidx.appcompat:appcompat:1.5.0"
+    androidXRecyclerView        = "androidx.recyclerview:recyclerview:1.2.1"
+    androidXSwipeRefresh        = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+    materialDesign              = "com.google.android.material:material:1.6.1"
+    constraintLayout            = "androidx.constraintlayout:constraintlayout:2.1.4"
+    multidex                    = "androidx.multidex:multidex:2.0.1"
+
+    // COMPONENTS
+    roomVersion                 = '2.5.0'
+    room                        = "androidx.room:room-runtime:$roomVersion"
+    roomCompiler                = "androidx.room:room-compiler:$roomVersion"
+
+    // DAGGER
+    daggerVersion               = '2.48.1'
+    dagger                      = "com.google.dagger:dagger:$daggerVersion"
+    daggerCompiler              = "com.google.dagger:dagger-compiler:$daggerVersion"
+
+    // RX
+    rxAndroid                   = "io.reactivex.rxjava3:rxandroid:3.0.0"
+    rxJava                      = "io.reactivex.rxjava3:rxjava:3.1.5"
+    rxKotlin                    = "io.reactivex.rxjava3:rxkotlin:3.0.1"
+    rxBinding                   = "com.jakewharton.rxbinding4:rxbinding:4.0.0"
+    rxBindingSwipeRefreshlayout = "com.jakewharton.rxbinding4:rxbinding-swiperefreshlayout:4.0.0"
+    rxReplayingShareKotlin      = "com.jakewharton.rx3:replaying-share-kotlin:3.0.0"
+
+    // RETROFIT
+    retrofitVersion             = '2.9.0'
+    retrofitConverterGson       = "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    retrofitAdapterRxJava       = "com.squareup.retrofit2:adapter-rxjava3:$retrofitVersion"
+
+    // TODO: remove this
+    // DEBUG
+    chuckerVersion              = '3.5.2'
+    timber                      = "com.jakewharton.timber:timber:5.0.1"
+    chuckerDebug                = "com.github.chuckerteam.chucker:library:$chuckerVersion"
+    chuckerRelease              = "com.github.chuckerteam.chucker:library-no-op:$chuckerVersion"
+
+    // TEST
+    junit                       = "junit:junit:4.13.2"
+    mockkVersion              = '1.13.8'
+    mockk                       = "io.mockk:mockk:$mockkVersion"
+    mockkAndroid                = "io.mockk:mockk-android:$mockkVersion"
+
+    // TODO: remove this
+    mockitoInline               = "org.mockito:mockito-inline:4.7.0"
+    mockitoKotlin               = "org.mockito.kotlin:mockito-kotlin:4.0.0"
+
+    // ANDROID TEST
+    androidXTestVersion         = '1.5.2'
+    espressoVersion             = '3.5.1'
+    multidexInstVersion         = '2.0.0'
+    androidXTestJunit           = "androidx.test.ext:junit:1.1.3"
+    androidXTestRunner          = "androidx.test:runner:$androidXTestVersion"
+    androidXTestRules           = "androidx.test:rules:$androidXTestVersion"
+    espressoCore                = "androidx.test.espresso:espresso-core:$espressoVersion"
+    espressoIntents             = "androidx.test.espresso:espresso-intents:$espressoVersion"
+    espressoContrib             = "androidx.test.espresso:espresso-contrib:$espressoVersion"
+    multidexInstrumentation     = "androidx.multidex:multidex-instrumentation:$multidexInstVersion"
+
+    // PROGUARD
+    proguardFolder              = '../proguard/'
+    modelRules                  = proguardFolder + 'model-rules.pro'
+    supportRules                = proguardFolder + 'support-rules.pro'
+    apacheRules                 = proguardFolder + 'apache-rules.pro'
+    gsonRules                   = proguardFolder + 'gson-rules.pro'
+    okhttp3Rules                = proguardFolder + 'okhttp3-rules.pro'
+    retrofit2Rules              = proguardFolder + 'retrofit2-rules.pro'
+
+    // DEPENDENCY CHECK STRATEGY
+    dependencyUpdatesStrategy = {
+        def isNonStable = { String version ->
+            def stableKeyword = ['RELEASE', 'FINAL', 'GA'].any { keyword ->
+                version.toUpperCase().contains(keyword)
+            }
+            def regex = /^[0-9,.v-]+(-r)?$/
+            return !stableKeyword && !(version ==~ regex)
+        }
+        componentSelection {
+            all {
+                if (isNonStable(it.candidate.version) && !isNonStable(it.currentVersion)) {
+                    reject('Release candidate')
+                }
+            }
+        }
+    }
+}

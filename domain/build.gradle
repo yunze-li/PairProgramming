@@ -1,0 +1,22 @@
+plugins {
+    id 'kotlin'
+    id 'idea'
+    id 'com.github.ben-manes.versions'
+    id 'com.adarshr.test-logger'
+}
+
+dependencies {
+    // RX
+    implementation rxJava
+    implementation rxKotlin
+    // CODE GENERATION
+    implementation dagger
+
+    // TEST
+    testImplementation junit
+    testImplementation mockitoInline
+    testImplementation mockitoKotlin
+
+    // DEPENDENCY CHECK STRATEGY
+    dependencyUpdates.resolutionStrategy dependencyUpdatesStrategy
+}
