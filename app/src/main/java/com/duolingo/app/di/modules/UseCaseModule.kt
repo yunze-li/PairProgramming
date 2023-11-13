@@ -1,6 +1,5 @@
 package com.duolingo.app.di.modules
 
-import android.util.Log
 import com.duolingo.app.LoggerImpl
 import com.duolingo.domain.usecases.base.Logger
 import com.duolingo.domain.usecases.base.UseCaseScheduler

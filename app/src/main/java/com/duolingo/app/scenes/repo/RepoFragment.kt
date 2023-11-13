@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.jakewharton.rxbinding4.swiperefreshlayout.refreshes
 import com.jakewharton.rxbinding4.view.clicks
-import com.duolingo.data.helper.TimberWrapper
 import com.duolingo.domain.model.needCleanUp.Repo
 import com.duolingo.domain.usecases.needCleanUp.GetRepo
 import com.duolingo.domain.usecases.needCleanUp.RefreshRepo
@@ -79,8 +78,6 @@ class RepoFragment : ABaseDataFragment<RepoFragmentBinding>(), RepoView {
 
     //region RENDER
     override fun render(viewModel: RepoViewModel) {
-        TimberWrapper.d { "render: $viewModel" }
-
         showLoading(viewModel.loadingState == LoadingState.LOADING)
         showRefreshingLoading(binding.swipeRefreshLayout, false)
         showRetryLoading(viewModel.loadingState == LoadingState.RETRY)

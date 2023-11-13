@@ -5,9 +5,11 @@ import com.duolingo.domain.model.id.LongId
 /** Data model of an user. */
 data class User(
     val id: LongId<User>,
-    val userName: String,
+    val name: String,
     val age: Int,
     val email: String,
-    val streak: Streak,
     val isTrialUser: Boolean,
+    val currentCourseId: Long,
+    val streak: Streak,
+    val xp: Long,
 )

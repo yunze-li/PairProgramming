@@ -3,7 +3,8 @@ package com.duolingo.data.di.modules
 import android.content.Context
 import com.duolingo.data.persistence.AppDatabase
 import com.duolingo.data.persistence.DatabaseFactory
-import com.duolingo.data.persistence.dao.RepoDao
+import com.duolingo.data.persistence.dao.CourseDao
+import com.duolingo.data.persistence.dao.UserDao
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -21,6 +22,11 @@ class PersistenceModule {
 
     @Provides
     @Singleton
-    internal fun provideRepoDao(appDatabase: AppDatabase): RepoDao = appDatabase.repoDao()
+    internal fun provideUserDao(appDatabase: AppDatabase): UserDao = appDatabase.userDao()
+
+    @Provides
+    @Singleton
+    internal fun provideCourseDao(appDatabase: AppDatabase): CourseDao = appDatabase.courseDao()
+
 
 }

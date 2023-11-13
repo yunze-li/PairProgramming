@@ -3,7 +3,6 @@ package com.duolingo.domain.usecases
 import com.duolingo.domain.exception.NoConnectedException
 import com.duolingo.domain.exception.PersistenceException
 import com.duolingo.domain.model.needCleanUp.Repo
-import com.duolingo.domain.repository.NeedCleanUp.RepoRepository
 import com.duolingo.domain.usecases.needCleanUp.GetListRepo
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single

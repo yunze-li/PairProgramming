@@ -13,6 +13,9 @@ android {
         minSdkVersion androidMinSdkVersion
         testInstrumentationRunner packageAndroidJUnitRunner
     }
+    buildFeatures {
+        buildConfig true
+    }
     buildTypes {
         debug {
             minifyEnabled true
@@ -30,11 +33,11 @@ android {
         testBuildType 'debugTest'
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
     }
 }
 
@@ -54,6 +57,7 @@ dependencies {
     implementation rxAndroid
     implementation rxJava
     implementation rxKotlin
+    implementation roomRxJava3
     // WEBSERVICES
     api retrofitConverterGson
     api retrofitAdapterRxJava
@@ -67,8 +71,7 @@ dependencies {
     // TEST
     testImplementation junit
     testImplementation androidXTestRunner
-    testImplementation mockitoInline
-    testImplementation mockitoKotlin
+    testImplementation mockk
 
     // ANDROID TEST
     androidTestImplementation androidXTestRunner

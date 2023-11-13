@@ -4,7 +4,8 @@ import android.content.Context
 import com.duolingo.data.di.modules.NetModule
 import com.duolingo.data.di.modules.PersistenceModule
 import com.duolingo.data.di.modules.RepositoryModule
-import com.duolingo.domain.repository.NeedCleanUp.RepoRepository
+import com.duolingo.domain.repository.CourseRepository
+import com.duolingo.domain.repository.UserRepository
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -19,6 +20,9 @@ interface DataComponent {
     }
 
     // Exposed to sub-graphs
-    fun provideRepoRepository(): RepoRepository
+    fun provideUserRepository(): UserRepository
+
+    // Exposed to sub-graphs
+    fun provideCourseRepository(): CourseRepository
 
 }

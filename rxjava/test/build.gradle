@@ -1,0 +1,17 @@
+plugins {
+    id 'kotlin'
+    id 'idea'
+    id 'com.github.ben-manes.versions'
+    id 'com.adarshr.test-logger'
+}
+
+dependencies {
+    // RX
+    implementation project(":rxjava")
+    implementation rxAndroid
+    implementation rxJava
+    implementation rxKotlin
+
+    // DEPENDENCY CHECK STRATEGY
+    dependencyUpdates.resolutionStrategy dependencyUpdatesStrategy
+}

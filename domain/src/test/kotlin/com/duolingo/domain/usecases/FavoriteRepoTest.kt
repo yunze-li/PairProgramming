@@ -2,7 +2,6 @@ package com.duolingo.domain.usecases
 
 import com.duolingo.domain.exception.PersistenceException
 import com.duolingo.domain.model.needCleanUp.Repo
-import com.duolingo.domain.repository.NeedCleanUp.RepoRepository
 import com.duolingo.domain.usecases.needCleanUp.FavoriteRepo
 import io.reactivex.rxjava3.core.Completable
 import org.junit.Test

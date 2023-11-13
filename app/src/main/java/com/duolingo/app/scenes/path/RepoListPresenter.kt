@@ -9,6 +9,7 @@ import com.duolingo.domain.usecases.needCleanUp.GetListRepo
 import com.duolingo.domain.usecases.needCleanUp.RefreshListRepo
 import com.duolingo.app.exception.ErrorMessageFactory
 import com.duolingo.app.scenes.base.presenter.APresenter
+import com.duolingo.domain.usecases.base.Logger
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.kotlin.addTo
@@ -22,6 +23,7 @@ class RepoListPresenter
     private val getCacheRepo: GetCacheRepo,
     private val router: RepoListRouter,
     private val scheduler: Scheduler,
+    private val logger: Logger,
     errorMessageFactory: ErrorMessageFactory
 ) : APresenter<RepoListView, RepoListViewModel>(errorMessageFactory) {
 

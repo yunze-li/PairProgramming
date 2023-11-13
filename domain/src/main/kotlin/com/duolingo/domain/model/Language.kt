@@ -46,5 +46,15 @@ enum class Language(
     SPANISH(
         "spanish",
         "es",
-    ),
+    );
+
+    /** Use abbreviation as language id. */
+    val languageId: String = abbreviation
+
+    companion object {
+
+        /** Get [Language] from abbreviated name string, return null if no matches found. */
+        fun fromLanguageId(languageId: String): Language? =
+            values().firstOrNull { value -> value.abbreviation == languageId }
+    }
 }

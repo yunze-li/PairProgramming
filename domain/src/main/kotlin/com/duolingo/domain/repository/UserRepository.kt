@@ -1,33 +1,33 @@
 package com.duolingo.domain.repository
 
 import com.duolingo.domain.model.User
-import com.duolingo.domain.model.needCleanUp.Repo
+import com.duolingo.domain.model.id.LongId
 
 import io.reactivex.rxjava3.core.Completable
-import io.reactivex.rxjava3.core.Flowable
-import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.core.Single
 
 /** An interface defined repository of user data. */
 interface UserRepository {
 
-    /**
-     * Get current logged in user.
-     */
-    fun observeCurrentLoggedInUser(): Flowable<User>
+    val isConnected: Boolean
 
     /**
-     * Get all users stored locally.
+     * Refresh user data from remote.
      */
-    fun observeAllUsers(): Flowable<List<User>>
+    fun refreshUser(userId: LongId<User>): Completable
 
     /**
-     * Refresh user data stored locally.
+     * Get cached user with [userId].
      */
-    fun refreshUser(user: User): Completable
+    fun observeCachedUser(userId: LongId<User>): Single<User>
 
     /**
-     * Create a trial user
+     * Get all users cached locally.
+     */
+    fun observeAllCachedUsers(): Single<List<User>>
+
+    /**
+     * Create a trial user from remote
      */
     fun createTrialUser(): Completable
 

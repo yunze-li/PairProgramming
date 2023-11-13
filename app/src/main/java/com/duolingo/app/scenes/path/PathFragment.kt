@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.jakewharton.rxbinding4.swiperefreshlayout.refreshes
 import com.jakewharton.rxbinding4.view.clicks
-import com.duolingo.data.helper.TimberWrapper
 import com.duolingo.domain.model.needCleanUp.Repo
 import com.duolingo.app.databinding.RepoListFragmentBinding
 import com.duolingo.app.scenes.base.view.ABaseDataFragment
@@ -76,8 +75,6 @@ class PathFragment : ABaseDataFragment<RepoListFragmentBinding>(), RepoListView 
 
     //region RENDER
     override fun render(viewModel: RepoListViewModel) {
-        TimberWrapper.d { "render: $viewModel" }
-
         showLoading(viewModel.loadingState == LoadingState.LOADING)
         showRefreshingLoading(binding.swipeRefreshLayout, false)
         showRetryLoading(viewModel.loadingState == LoadingState.RETRY)

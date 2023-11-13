@@ -4,8 +4,10 @@ import android.content.Context
 import androidx.room.Room
 import com.duolingo.data.R
 
+/** Factory to create the database instance. */
 object DatabaseFactory {
 
+    /** Get the database instance. */
     fun getDatabase(context: Context): AppDatabase =
         Room.databaseBuilder(
             context,
