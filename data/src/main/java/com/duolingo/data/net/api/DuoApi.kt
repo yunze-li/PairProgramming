@@ -7,10 +7,7 @@ import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
 interface DuoApi {
 
     @GET("duolingo-gateway/user/{userId}")

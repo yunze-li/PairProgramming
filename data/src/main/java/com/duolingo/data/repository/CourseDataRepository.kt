@@ -16,20 +16,22 @@ import io.reactivex.rxjava3.core.Single
 class CourseDataRepository(
     private val courseConverter: CourseConverter,
     private val courseProcessor: CourseProcessor,
-    private val duoApi: DuoApi,
+//    private val duoApi: DuoApi,
     private val networkChecker: NetworkChecker
 ) : CourseRepository {
 
     override val isConnected: Boolean
         get() = networkChecker.isConnected
 
-    override fun refreshCourse(courseId: LongId<Course>): Completable =
-        duoApi.getCourse(courseId.get())
-            .map { courseConverter.convert(it) }
-            .map { courseConverter.convertToEntity(it) }
-            .flatMapCompletable {
-                courseProcessor.updateCourse(it)
-            }
+    override fun refreshCourse(courseId: LongId<Course>): Completable {
+        TODO("add refresh course")
+//        duoApi.getCourse(courseId.get())
+//            .map { courseConverter.convert(it) }
+//            .map { courseConverter.convertToEntity(it) }
+//            .flatMapCompletable {
+//                courseProcessor.updateCourse(it)
+//            }
+    }
 
     override fun observeCachedCourse(
         courseId: LongId<Course>,
@@ -41,10 +43,14 @@ class CourseDataRepository(
         courseProcessor.getAllCourses()
             .map { it.map { courseEntity -> courseConverter.convert(courseEntity) } }
 
-    override fun downloadCourse(courseId: LongId<Course>): Completable =
-        Completable.fromAction { duoApi.downloadCourse(courseId.get()) }
+    override fun downloadCourse(courseId: LongId<Course>): Completable {
+//        Completable.fromAction { duoApi.downloadCourse(courseId.get()) }
+        TODO("add download course")
+    }
 
-    override fun invalidateCourse(courseId: LongId<Course>): Completable =
-        Completable.fromAction { duoApi.invalidateCourse(courseId.get()) }
+    override fun invalidateCourse(courseId: LongId<Course>): Completable {
+//        Completable.fromAction { duoApi.invalidateCourse(courseId.get()) }
+        TODO("add invalidate course")
+    }
 
 }

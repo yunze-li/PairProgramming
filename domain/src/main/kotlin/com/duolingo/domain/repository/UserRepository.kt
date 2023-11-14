@@ -2,6 +2,7 @@ package com.duolingo.domain.repository
 
 import com.duolingo.domain.model.User
 import com.duolingo.domain.model.id.LongId
+import com.duolingo.domain.needCleanUp.Repo
 
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
@@ -30,5 +31,7 @@ interface UserRepository {
      * Create a trial user from remote
      */
     fun createTrialUser(): Completable
+
+    fun observeMockRepo(): Single<List<Repo>>
 
 }

@@ -2,24 +2,19 @@ package com.duolingo.data.repository
 
 import com.duolingo.data.converter.UserConverter
 import com.duolingo.data.di.providers.NetworkChecker
-import com.duolingo.data.net.api.DuoApi
 import com.duolingo.data.persistence.processor.UserProcessor
 import com.duolingo.domain.model.User
 import com.duolingo.domain.model.id.LongId
+import com.duolingo.domain.needCleanUp.Repo
 import com.duolingo.domain.repository.UserRepository
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
-import javax.inject.Inject
-import javax.inject.Singleton
 
 /**
  * [RepoRepository] for retrieving user data.
  */
-@Singleton
-class UserDataRepository
-@Inject
-constructor(
-    private val duoApi: DuoApi,
+class UserDataRepository(
+//    private val duoApi: DuoApi,
     private val networkChecker: NetworkChecker,
     private val userConverter: UserConverter,
     private val userProcessor: UserProcessor,
@@ -28,13 +23,15 @@ constructor(
     override val isConnected: Boolean
         get() = networkChecker.isConnected
 
-    override fun refreshUser(userId: LongId<User>): Completable =
-        duoApi.getUser(userId.get())
-            .map { userConverter.convert(it) }
-            .map { userConverter.convertToEntity(it) }
-            .flatMapCompletable {
-                userProcessor.updateUser(it)
-            }
+    override fun refreshUser(userId: LongId<User>): Completable {
+        TODO("add refresh user")
+//        duoApi.getUser(userId.get())
+//            .map { userConverter.convert(it) }
+//            .map { userConverter.convertToEntity(it) }
+//            .flatMapCompletable {
+//                userProcessor.updateUser(it)
+//            }
+    }
 
     override fun observeCachedUser(userId: LongId<User>): Single<User> =
         userProcessor.get(userId.get())
@@ -44,11 +41,21 @@ constructor(
         userProcessor.getAllUsers()
             .map { it.map { userEntity -> userConverter.convert(userEntity) } }
 
-    override fun createTrialUser(): Completable =
-        duoApi.createTrialUser()
-            .map { userConverter.convert(it) }
-            .map { userConverter.convertToEntity(it) }
-            .flatMapCompletable {
-                userProcessor.updateUser(it)
-            }
+    override fun createTrialUser(): Completable {
+        TODO("add create trial user")
+//        duoApi.createTrialUser()
+//            .map { userConverter.convert(it) }
+//            .map { userConverter.convertToEntity(it) }
+//            .flatMapCompletable {
+//                userProcessor.updateUser(it)
+//            }
+    }
+
+    override fun observeMockRepo(): Single<List<Repo>> =
+        Single.just(
+            listOf(
+                Repo(1L, "test repo 1", "test description 1", "test url 1", true, "yunze"),
+                Repo(2L, "test repo 2", "test description 2", "test url 2", false, "yunze"),
+            )
+        )
 }

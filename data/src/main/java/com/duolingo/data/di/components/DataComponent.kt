@@ -4,7 +4,6 @@ import android.content.Context
 import com.duolingo.data.di.modules.NetModule
 import com.duolingo.data.di.modules.PersistenceModule
 import com.duolingo.data.di.modules.RepositoryModule
-import com.duolingo.domain.repository.CourseRepository
 import com.duolingo.domain.repository.UserRepository
 import dagger.BindsInstance
 import dagger.Component
@@ -19,10 +18,9 @@ interface DataComponent {
         fun create(@BindsInstance context: Context): DataComponent
     }
 
-    // Exposed to sub-graphs
     fun provideUserRepository(): UserRepository
 
-    // Exposed to sub-graphs
-    fun provideCourseRepository(): CourseRepository
+//    // Exposed to sub-graphs
+//    fun provideCourseRepository(): CourseRepository
 
 }

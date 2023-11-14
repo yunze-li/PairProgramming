@@ -3,7 +3,6 @@ package com.duolingo.data.di.modules
 import com.duolingo.data.converter.CourseConverter
 import com.duolingo.data.converter.UserConverter
 import com.duolingo.data.di.providers.NetworkChecker
-import com.duolingo.data.extensions.api
 import com.duolingo.data.persistence.processor.CourseProcessor
 import com.duolingo.data.persistence.processor.UserProcessor
 import com.duolingo.data.repository.CourseDataRepository
@@ -29,7 +28,7 @@ class RepositoryModule {
         userConverter: UserConverter,
         userProcessor: UserProcessor,
     ): UserRepository =
-        UserDataRepository(retrofit.api(), networkChecker, userConverter, userProcessor)
+        UserDataRepository(networkChecker, userConverter, userProcessor)
 
     @Provides
     @Singleton
@@ -39,6 +38,6 @@ class RepositoryModule {
         courseConverter: CourseConverter,
         courseProcessor: CourseProcessor,
     ): CourseRepository =
-        CourseDataRepository(courseConverter, courseProcessor, retrofit.api(), networkChecker)
+        CourseDataRepository(courseConverter, courseProcessor, networkChecker)
 
 }
