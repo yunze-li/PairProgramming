@@ -1,19 +1,19 @@
 package com.duolingo.app.path
 
 import androidx.appcompat.app.AppCompatActivity
-import com.duolingo.app.repo.RepoActivity
+import com.duolingo.app.repo.SessionActivity
+import com.duolingo.domain.model.Course
+import com.duolingo.domain.model.id.LongId
 import javax.inject.Inject
 
-class RepoListRouter
+class CourseListRouter
 @Inject internal constructor(private val activity: AppCompatActivity) {
 
-    fun routeToRepo(repoId: Long, repoName: String, userName: String) {
+    fun routeToSession(courseId: LongId<Course>) {
         activity.startActivity(
-            RepoActivity.newIntent(
+            SessionActivity.newIntent(
                 activity.applicationContext,
-                repoId,
-                repoName,
-                userName
+                courseId,
             )
         )
     }

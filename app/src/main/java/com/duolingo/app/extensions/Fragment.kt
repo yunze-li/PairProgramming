@@ -11,6 +11,9 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
+import com.duolingo.domain.model.Course
+import com.duolingo.domain.model.id.LongId
+import java.io.Serializable
 
 /** Convenience wrapper around [activityViewModels] for assisted injection. */
 inline fun <reified VM : ViewModel> Fragment.assistedActivityViewModels(

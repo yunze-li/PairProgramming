@@ -1,11 +1,12 @@
 package com.duolingo.app.path
 
 import com.duolingo.app.base.LoadDataView
+import com.duolingo.domain.model.Course
 import com.duolingo.domain.needCleanUp.Repo
 
 import io.reactivex.rxjava3.core.Observable
 
-interface RepoListView : LoadDataView<RepoListViewModel> {
+interface CourseListView : LoadDataView<CourseListData> {
 
     fun intentLoadData(): Observable<String>
 
@@ -13,8 +14,8 @@ interface RepoListView : LoadDataView<RepoListViewModel> {
 
     fun intentErrorRetry(): Observable<String>
 
-    fun intentFavorite(): Observable<Pair<Int, Repo>>
+//    fun intentFavorite(): Observable<Pair<Int, Repo>>
 
-    fun openRepo(): Observable<Pair<Repo, String>>
+    fun openCourse(): Observable<Pair<Course, String>>
 
 }

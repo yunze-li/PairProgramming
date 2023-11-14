@@ -11,7 +11,7 @@
         android:theme="@style/Base.Theme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".path.PathActivity"
+            android:name=".path.ToolbarFragmentActivity"
             android:theme="@style/Base.Theme"
             android:exported="true">
             <intent-filter>
@@ -20,7 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".repo.RepoActivity" />
+        <activity android:name=".repo.SessionActivity" />
     </application>
 
 </manifest>

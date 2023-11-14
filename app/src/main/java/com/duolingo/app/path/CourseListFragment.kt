@@ -1,52 +1,44 @@
-package com.duolingo.app.repo
+package com.duolingo.app.path
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import com.duolingo.app.base.BaseDataFragment
 import com.duolingo.app.base.ContentState
 import com.duolingo.app.base.LoadingState
+import com.duolingo.app.databinding.CourseListFragmentBinding
 import com.jakewharton.rxbinding4.swiperefreshlayout.refreshes
 import com.jakewharton.rxbinding4.view.clicks
-import com.duolingo.app.databinding.RepoFragmentBinding
-import com.duolingo.app.extensions.build
-import com.duolingo.app.extensions.getLongArg
-import com.duolingo.app.extensions.getStringArg
-import com.duolingo.domain.needCleanUp.Repo
+import com.duolingo.domain.model.Course
 import io.reactivex.rxjava3.core.Observable
 import javax.inject.Inject
 
-class RepoFragment : BaseDataFragment<RepoFragmentBinding>(), RepoView {
+class CourseListFragment : BaseDataFragment<CourseListFragmentBinding>(), CourseListView {
 
     companion object {
-        private const val ARGS_REPO_ID = "args_repo_id"
-        private const val ARGS_REPO_NAME = "args_repo_name"
-        private const val ARGS_USER_NAME = "args_user_name"
-
-        fun newInstance(repoId: Long, repoName: String, userName: String): RepoFragment =
-            RepoFragment().build {
-                putLong(ARGS_REPO_ID, repoId)
-                putString(ARGS_REPO_NAME, repoName)
-                putString(ARGS_USER_NAME, userName)
-            }
+        fun newInstance(): CourseListFragment = CourseListFragment()
     }
 
     @Inject
-    lateinit var presenter: RepoPresenter
+    lateinit var presenter: CourseListPresenter
 
     // Properties
     private fun getParam() = "yunze"
-    private val repoId: Long by lazy { getLongArg(ARGS_REPO_ID) }
-    private val repoName: String by lazy { getStringArg(ARGS_REPO_NAME) }
-    private val userName: String by lazy { getStringArg(ARGS_USER_NAME) }
+    private val courseAdapter = CourseAdapter()
 
     // View Binding
-    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> RepoFragmentBinding =
-        RepoFragmentBinding::inflate
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> CourseListFragmentBinding =
+        CourseListFragmentBinding::inflate
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityComponent.inject(this)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initView()
     }
 
     override fun onResume() {
@@ -59,7 +51,11 @@ class RepoFragment : BaseDataFragment<RepoFragmentBinding>(), RepoView {
         presenter.detach()
     }
 
-    //region INTENTS
+    private fun initView() {
+        binding.recyclerView.setHasFixedSize(true)
+        binding.recyclerView.adapter = courseAdapter
+    }
+
     override fun intentLoadData(): Observable<String> =
         Observable.just(getParam())
 
@@ -69,12 +65,13 @@ class RepoFragment : BaseDataFragment<RepoFragmentBinding>(), RepoView {
     override fun intentErrorRetry(): Observable<String> =
         btnErrorRetry?.clicks()?.map { getParam() } ?: Observable.never()
 
-    override fun intentActionLink(): Observable<Unit> =
-        (activity as RepoActivity).intentActionLink
-    //endregion
+//    override fun intentFavorite(): Observable<Pair<Int, Repo>> =
+//        courseAdapter.repoFavoriteIntent
 
-    //region RENDER
-    override fun render(viewModel: RepoViewModel) {
+    override fun openCourse(): Observable<Pair<Course, String>> =
+        courseAdapter.repoClickIntent.map { it to getParam() }
+
+    override fun render(viewModel: CourseListData) {
 
         showLoading(viewModel.loadingState == LoadingState.LOADING)
         showRefreshingLoading(binding.swipeRefreshLayout, false)
@@ -83,15 +80,21 @@ class RepoFragment : BaseDataFragment<RepoFragmentBinding>(), RepoView {
         showError(viewModel.contentState == ContentState.ERROR)
 
         renderData(viewModel.data)
+//        renderFavoriteRepo(viewModel.favoriteRepo, viewModel.favoriteRepoPosition)
         renderError(viewModel.errorMessage)
         renderSnack(viewModel.snackMessage)
     }
 
-    private fun renderData(repo: Repo?) {
-        repo?.also {
-            binding.textRepoName.text = it.name
-            binding.textRepoDescription.text = it.description
+    private fun renderData(courseList: List<Course>?) {
+        courseList?.also {
+            courseAdapter.setData(it)
+            binding.recyclerView.scrollToPosition(0)
         }
     }
-    //endregion
+
+//    private fun renderFavoriteRepo(favoriteRepo: Repo?, favoriteRepoPosition: Int?) {
+//        if (favoriteRepo != null && favoriteRepoPosition != null) {
+//            courseAdapter.setData(favoriteRepoPosition, favoriteRepo)
+//        }
+//    }
 }

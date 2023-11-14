@@ -1,11 +1,9 @@
 package com.duolingo.domain.repository
 
 import com.duolingo.domain.model.Course
-import com.duolingo.domain.model.User
 import com.duolingo.domain.model.id.LongId
 
 import io.reactivex.rxjava3.core.Completable
-import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Single
 
 /** An interface defined repository of course data. */
@@ -19,14 +17,14 @@ interface CourseRepository {
     fun refreshCourse(courseId: LongId<Course>): Completable
 
     /**
-     * Get cached course data by [courseId].
+     * Get current course data.
      */
-    fun observeCachedCourse(courseId: LongId<Course>): Single<Course>
+    fun observeCourse(courseId: LongId<Course>): Single<Course>
 
     /**
-     * Get all courses cached locally.
+     * Get all available courses for this user.
      */
-    fun observeAllCachedCourses(): Single<List<Course>>
+    fun observeAllAvailableCourses(): Single<List<Course>>
 
     /**
      * Download a course which matches the [courseId].

@@ -10,11 +10,11 @@ import com.duolingo.app.databinding.ActivityLayoutToLoadFragmentBinding
 import com.duolingo.app.extensions.addFragment
 import com.duolingo.app.extensions.enableToolbar
 
-class PathActivity : BaseActivity<ActivityLayoutToLoadFragmentBinding>() {
+class ToolbarFragmentActivity : BaseActivity<ActivityLayoutToLoadFragmentBinding>() {
 
     companion object {
         fun newIntent(context: Context): Intent =
-            Intent(context, PathActivity::class.java)
+            Intent(context, ToolbarFragmentActivity::class.java)
     }
 
     // View Binding
@@ -35,7 +35,7 @@ class PathActivity : BaseActivity<ActivityLayoutToLoadFragmentBinding>() {
 
     private fun initializeActivity(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
-            addFragment(R.id.container, PathFragment.newInstance())
+            addFragment(R.id.container, CourseListFragment.newInstance())
         }
     }
 }

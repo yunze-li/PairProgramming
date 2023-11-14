@@ -1,29 +1,30 @@
 package com.duolingo.app.repo
 
 import com.duolingo.app.base.Presenter
-import com.duolingo.data.extensions.shareReplay
-import com.duolingo.data.extensions.startWithSingle
-import com.duolingo.domain.utils.DelayFunction
 import com.duolingo.app.exception.ErrorMessageFactory
+import com.duolingo.data.extensions.shareReplay
+import com.duolingo.domain.model.Course
+import com.duolingo.domain.model.id.LongId
+import com.duolingo.domain.repository.CourseRepository
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.kotlin.addTo
-import javax.inject.Inject
 
-class RepoPresenter
-@Inject constructor(
-//    private val getRepo: GetRepo,
-//    private val refreshRepo: RefreshRepo,
-    private val router: RepoRouter,
-//    private val scheduler: Scheduler,
+class SessionPresenter
+@AssistedInject constructor(
+    @Assisted private val courseId: LongId<Course>,
+    private val router: SessionRouter,
+    private val courseRepository: CourseRepository,
     errorMessageFactory: ErrorMessageFactory
-) : Presenter<RepoView, RepoViewModel>(errorMessageFactory) {
+) : Presenter<SessionView, SessionData>(errorMessageFactory) {
 
-    override fun attach(view: RepoView) {
-//        val loadRepo = view.intentLoadData().flatMap { loadRepo(it) }.shareReplay()
+    override fun attach(view: SessionView) {
+        val loadSession = loadSession(courseId).shareReplay()
 //        val refreshRepo = view.intentRefreshData().flatMap { refreshData(it) }
 //        val retryRepo = view.intentErrorRetry().flatMap { retryRepo(it) }
 
-//        subscribeViewModel(view, loadRepo, refreshRepo, retryRepo)
+        subscribeViewModel(view, loadSession)
 
 //        loadRepo.filter { it.data != null }.map { it.data!! }
 //            .switchMap { repo -> view.intentActionLink().map { repo.url } }
@@ -31,7 +32,10 @@ class RepoPresenter
 //            .addTo(composite)
     }
 
-//    private fun loadRepo(getRepoParam: GetRepo.Param): Observable<RepoViewModel> =
+    private fun loadSession(courseId: LongId<Course>): Observable<SessionData> =
+        courseRepository.observeCourse(courseId).toObservable()
+            .map { SessionData.createData(it) }
+            .onErrorReturn { onError(it) }
 //        getRepo(getRepoParam)
 //            .startWithSingle(RepoViewModel.createLoading())
 //            .onErrorReturn { onError(it) }
@@ -51,7 +55,12 @@ class RepoPresenter
 //        getRepo.execute(getRepoParam).toObservable()
 //            .map { RepoViewModel.createData(it) }
 
-    private fun onError(error: Throwable): RepoViewModel =
-        RepoViewModel.createError(getErrorMessage(error))
+    private fun onError(error: Throwable): SessionData =
+        SessionData.createError(getErrorMessage(error))
+
+    @AssistedFactory
+    interface SessionPresenterFactory {
+        fun create(courseId: LongId<Course>): SessionPresenter
+    }
 
 }

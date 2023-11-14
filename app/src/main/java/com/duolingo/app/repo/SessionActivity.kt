@@ -12,28 +12,23 @@ import com.duolingo.app.databinding.ActivityLayoutToLoadFragmentBinding
 import com.duolingo.app.extensions.addFragment
 import com.duolingo.app.extensions.enableToolbar
 import com.duolingo.app.extensions.getLongExtra
-import com.duolingo.app.extensions.getStringExtra
+import com.duolingo.domain.model.Course
+import com.duolingo.domain.model.id.LongId
 import io.reactivex.rxjava3.subjects.PublishSubject
 
-class RepoActivity : BaseActivity<ActivityLayoutToLoadFragmentBinding>() {
+class SessionActivity : BaseActivity<ActivityLayoutToLoadFragmentBinding>() {
 
     companion object {
-        private const val EXTRA_REPO_ID = "extra_repo_id"
-        private const val EXTRA_REPO_NAME = "extra_repo_name"
-        private const val EXTRA_USER_NAME = "extra_user_name"
+        private const val EXTRA_COURSE_ID = "extra_course_id"
 
-        fun newIntent(context: Context, repoId: Long, repoName: String, userName: String): Intent =
-            Intent(context, RepoActivity::class.java).apply {
-                putExtra(EXTRA_REPO_ID, repoId)
-                putExtra(EXTRA_REPO_NAME, repoName)
-                putExtra(EXTRA_USER_NAME, userName)
+        fun newIntent(context: Context, courseId: LongId<Course>): Intent =
+            Intent(context, SessionActivity::class.java).apply {
+                putExtra(EXTRA_COURSE_ID, courseId.get())
             }
     }
 
     // Properties
-    private val repoId: Long by lazy { getLongExtra(EXTRA_REPO_ID) }
-    private val repoName: String by lazy { getStringExtra(EXTRA_REPO_NAME) }
-    private val userName: String by lazy { getStringExtra(EXTRA_USER_NAME) }
+    private val courseId: Long by lazy { getLongExtra(EXTRA_COURSE_ID) }
 
     // Intent
     internal val intentActionLink = PublishSubject.create<Unit>()
@@ -49,12 +44,12 @@ class RepoActivity : BaseActivity<ActivityLayoutToLoadFragmentBinding>() {
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-        enableToolbar(true, repoName)
+        enableToolbar(true, "start session")
     }
 
     private fun initializeActivity(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
-            addFragment(R.id.container, RepoFragment.newInstance(repoId, repoName, userName))
+            addFragment(R.id.container, SessionFragment.newInstance(courseId))
         }
     }
 

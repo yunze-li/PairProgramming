@@ -1,14 +1,13 @@
 package com.duolingo.app.repo
 
 import androidx.appcompat.app.AppCompatActivity
-import com.duolingo.app.extensions.showUrlInBrowser
 import javax.inject.Inject
 
-class RepoRouter
+class SessionRouter
 @Inject internal constructor(private val activity: AppCompatActivity) {
 
     fun routeToLink(url: String) {
-        activity.showUrlInBrowser(url)
+//        activity.showUrlInBrowser(url)
     }
 
 }
