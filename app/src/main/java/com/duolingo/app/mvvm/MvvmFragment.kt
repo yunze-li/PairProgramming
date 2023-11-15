@@ -34,7 +34,7 @@ abstract class MvvmFragment<VB : ViewBinding>(
   /**
    * Inject the ApplicationComponent and ActivityComponent
    */
-  protected val appComponent: ApplicationComponent by lazy { (requireActivity().application as DuoApplication).appComponent }
+//  protected val appComponent: ApplicationComponent by lazy { (requireActivity().application as DuoApplication).appComponent }
   protected val activityComponent: ActivityComponent by lazy { (activity as BaseActivity<*>).activityComponent }
 
   @Inject lateinit var baseMvvmViewDependenciesFactory: MvvmView.Dependencies.Factory

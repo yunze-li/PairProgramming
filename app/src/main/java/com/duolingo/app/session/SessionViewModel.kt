@@ -1,39 +1,48 @@
 package com.duolingo.app.session
 
 import com.duolingo.app.base.BaseViewModel
-import com.duolingo.domain.model.Course
+import com.duolingo.domain.model.Challenge
+import com.duolingo.domain.model.Session
 import com.duolingo.domain.model.id.LongId
 import com.duolingo.domain.repository.CourseRepository
+import com.duolingo.domain.repository.SessionRepository
+import com.duolingo.rxjava.processor.RxProcessor
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.core.Single
 
 class SessionViewModel
 @AssistedInject constructor(
-    @Assisted private val courseId: LongId<Course>,
-    private val router: SessionRouter,
-    private val courseRepository: CourseRepository,
+    @Assisted private val sessionId: LongId<Session>,
+    rxProcessorFactory: RxProcessor.Factory,
+    private val sessionRepository: SessionRepository,
 ) : BaseViewModel() {
 
+    private lateinit var challengeIterator: Iterator<Challenge>
+
     fun configure() = configureOnce {
-        // TODO: add something in here
+        sessionRepository.observeChallengesForSession(sessionId)
+            .firstElement()
+            .subscribe { challenges ->
+                challengeIterator = challenges.iterator()
+                challengeProcessor.offer(challengeIterator.next())
+            }.unsubscribeOnCleared()
     }
 
-    val sessionUiModel = Flowable.defer {
-        courseRepository.observeCourse(courseId)
-            .map { SessionUiModel(it.uiLanguage.name, it.learningLanguage.name) }
-    }
+    private val challengeProcessor = rxProcessorFactory.behavior<Challenge>()
+    val challenge: Flowable<Challenge> = challengeProcessor.observe().asConsumable()
 
-    /** Ui model for the session screen. */
-    data class SessionUiModel(
-        val uiLanguageText: String,
-        val learningLanguageText: String,
-    )
+    fun onChallengeFinished() {
+        if (!challengeIterator.hasNext()) {
+            challengeProcessor.offer(challengeIterator.next())
+        }
+    }
 
     @AssistedFactory
-    interface SessionPresenterFactory {
-        fun create(courseId: LongId<Course>): SessionViewModel
+    interface Factory {
+        fun create(sessionId: LongId<Session>): SessionViewModel
     }
 
 }

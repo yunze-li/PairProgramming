@@ -3,9 +3,9 @@ package com.duolingo.app.courselist
 import androidx.annotation.Nullable
 import androidx.recyclerview.widget.DiffUtil
 
-class CourseUiModelDiffCallback(
-    private val oldList: List<CourseListViewModel.CourseUiModel>,
-    private val newList: List<CourseListViewModel.CourseUiModel>
+class CourseElementDiffCallback(
+    private val oldList: List<CourseListViewModel.CourseElement>,
+    private val newList: List<CourseListViewModel.CourseElement>
 ) : DiffUtil.Callback() {
 
     override fun getOldListSize(): Int = oldList.size

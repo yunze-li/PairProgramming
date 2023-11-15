@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.duolingo.app.ui.CardView
+        android:layout_height="@dimen/juicyLength5"
+        android:layout_width="match_parent"
+        android:layout_margin="@dimen/juicyLengthHalf"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        style="@style/UnclickableCard"
+        >
+
+        <TextView
+            android:id="@+id/sessionName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:textAllCaps="true"
+            style="@style/H2"
+            tools:text="session 1" />
+
+        <TextView
+            android:id="@+id/difficultyTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/juicyLength3"
+            android:maxLines="1"
+            android:text="@string/session_difficulty_title"
+            style="@style/Caption1" />
+
+        <TextView
+            android:id="@+id/difficultyValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/juicyLengthHalf"
+            android:maxLines="1"
+            style="@style/Caption1"
+            tools:text="3" />
+
+    </com.duolingo.app.ui.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

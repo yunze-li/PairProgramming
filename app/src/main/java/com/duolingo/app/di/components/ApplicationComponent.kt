@@ -1,11 +1,13 @@
 package com.duolingo.app.di.components
 
 import android.app.Application
+import com.duolingo.app.courselist.CourseListFragment
 import com.duolingo.data.di.components.DataComponent
 import com.duolingo.app.di.PerApplication
 import com.duolingo.app.di.modules.ApplicationModule
 import com.duolingo.app.di.modules.MvvmModule
 import com.duolingo.app.di.modules.RxModule
+import com.duolingo.app.session.SessionActivity
 import dagger.BindsInstance
 import dagger.Component
 
@@ -28,5 +30,7 @@ interface ApplicationComponent {
     }
 
     fun activityComponent(): ActivityComponent.Factory
+
+    fun inject(activity: SessionActivity)
 
 }

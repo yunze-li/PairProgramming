@@ -1,11 +1,11 @@
 package com.duolingo.app.courselist
 
 import android.os.Bundle
-import com.duolingo.app.databinding.CourseListFragmentBinding
+import com.duolingo.app.databinding.FragmentCourseListBinding
 import com.duolingo.app.mvvm.MvvmFragment
 import javax.inject.Inject
 
-class CourseListFragment : MvvmFragment<CourseListFragmentBinding>(CourseListFragmentBinding::inflate) {
+class CourseListFragment : MvvmFragment<FragmentCourseListBinding>(FragmentCourseListBinding::inflate) {
 
     @Inject
     lateinit var viewModel: CourseListViewModel
@@ -15,12 +15,12 @@ class CourseListFragment : MvvmFragment<CourseListFragmentBinding>(CourseListFra
         activityComponent.inject(this)
     }
 
-    override fun onViewCreated(binding: CourseListFragmentBinding, savedInstanceState: Bundle?) {
-        val courseAdapter = CourseAdapter()
+    override fun onViewCreated(binding: FragmentCourseListBinding, savedInstanceState: Bundle?) {
+        val courseElementAdapter = CourseElementAdapter()
         binding.recyclerView.setHasFixedSize(true)
-        binding.recyclerView.adapter = courseAdapter
+        binding.recyclerView.adapter = courseElementAdapter
 
-        whileStarted(viewModel.courseUiModel) { courseAdapter.setData(it) }
+        whileStarted(viewModel.courseElements) { courseElementAdapter.setCourseElement(it) }
     }
 
     companion object {

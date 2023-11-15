@@ -105,4 +105,6 @@ fun Fragment.getBooleanArg(key: String): Boolean = arguments!!.getBoolean(key)
 
 fun Fragment.getStringArg(key: String): String = arguments!!.getString(key)!!
 
+fun Fragment.getSerializableArg(key: String): Serializable = arguments!!.getSerializable(key)!!
+
 fun <T : View?> Fragment.findViewById(@IdRes id: Int): T? = view?.findViewById<T>(id)

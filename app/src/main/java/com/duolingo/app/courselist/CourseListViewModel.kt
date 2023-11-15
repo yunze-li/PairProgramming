@@ -1,12 +1,7 @@
 package com.duolingo.app.courselist
 
 import com.duolingo.app.base.BaseViewModel
-import com.duolingo.app.ui.UiModel
-import com.duolingo.domain.model.Course
-import com.duolingo.domain.model.Language
-import com.duolingo.domain.model.id.LongId
 import com.duolingo.domain.repository.CourseRepository
-import com.duolingo.rxjava.flowable.captureLatest
 import io.reactivex.rxjava3.core.Flowable
 import javax.inject.Inject
 
@@ -20,23 +15,23 @@ class CourseListViewModel
         // TODO: add something in here
     }
 
-    val courseUiModel = Flowable.defer {
+    val courseElements = Flowable.defer {
         courseRepository.observeAllAvailableCourses()
             .map { courses ->
                 courses.map { course ->
-                    CourseUiModel(
+                    CourseElement(
                         uiLanguageText = course.uiLanguage.name,
                         learningLanguageText = course.learningLanguage.name,
-                        onCourseClick = { router.routeToSession(course.id) }
+                        onCourseClicked = { router.routeToCourse(course.id) }
                     )
                 }
             }
     }
 
-    /** Ui model for a single course. */
-    data class CourseUiModel(
+    /** Element for course item view */
+    data class CourseElement(
         val uiLanguageText: String,
         val learningLanguageText: String,
-        val onCourseClick: () -> Unit,
+        val onCourseClicked: () -> Unit,
     )
 }

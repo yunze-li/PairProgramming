@@ -2,9 +2,10 @@ package com.duolingo.domain.model
 
 import com.duolingo.domain.base.Tuples
 import com.duolingo.domain.model.id.LongId
+import java.io.Serializable
 
 /** Data class for a challenge. */
-sealed class Challenge(val id: LongId<Challenge>) {
+sealed class Challenge(val id: LongId<Challenge>): Serializable {
 
     /**
      * A challenge type to give a word in ui language and ask user to select the correct translation

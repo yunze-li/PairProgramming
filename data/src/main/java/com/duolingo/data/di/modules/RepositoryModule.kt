@@ -6,8 +6,10 @@ import com.duolingo.data.di.providers.NetworkChecker
 import com.duolingo.data.persistence.processor.CourseProcessor
 import com.duolingo.data.persistence.processor.UserProcessor
 import com.duolingo.data.repository.CourseDataRepository
+import com.duolingo.data.repository.SessionDataRepository
 import com.duolingo.data.repository.UserDataRepository
 import com.duolingo.domain.repository.CourseRepository
+import com.duolingo.domain.repository.SessionRepository
 import com.duolingo.domain.repository.UserRepository
 import dagger.Module
 import dagger.Provides
@@ -39,5 +41,12 @@ class RepositoryModule {
         courseProcessor: CourseProcessor,
     ): CourseRepository =
         CourseDataRepository(courseConverter, courseProcessor, networkChecker)
+
+    @Provides
+    @Singleton
+    internal fun provideSessionDataRepository(
+        networkChecker: NetworkChecker,
+    ): SessionRepository =
+        SessionDataRepository(networkChecker)
 
 }

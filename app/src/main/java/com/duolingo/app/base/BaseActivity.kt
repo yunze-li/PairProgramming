@@ -8,8 +8,10 @@ import androidx.viewbinding.ViewBinding
 import com.duolingo.app.DuoApplication
 import com.duolingo.app.di.components.ActivityComponent
 import com.duolingo.app.di.components.ApplicationComponent
+import com.duolingo.app.mvvm.MvvmView
+import javax.inject.Inject
 
-abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
+abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity(), MvvmView {
 
     private val applicationComponent: ApplicationComponent by lazy {
         (application as DuoApplication).appComponent
@@ -40,6 +42,17 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    protected val appComponent: ApplicationComponent by lazy { (application as DuoApplication).appComponent }
+
+    @Inject
+    lateinit var baseMvvmViewDependenciesFactory: MvvmView.Dependencies.Factory
+
+    override val mvvmDependencies: MvvmView.Dependencies by lazy {
+        baseMvvmViewDependenciesFactory.create(
+            uiLifecycleOwnerProvider = { this@BaseActivity },
+        )
     }
 
 }
