@@ -6,6 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
+import com.duolingo.app.DuoApplication
+import com.duolingo.app.base.BaseActivity
+import com.duolingo.app.di.components.ActivityComponent
+import com.duolingo.app.di.components.ApplicationComponent
 import javax.inject.Inject
 
 /**
@@ -26,6 +30,12 @@ import javax.inject.Inject
 abstract class MvvmFragment<VB : ViewBinding>(
   private val bindingInflate: (LayoutInflater, ViewGroup?, Boolean) -> VB
 ) : Fragment(), MvvmView {
+
+  /**
+   * Inject the ApplicationComponent and ActivityComponent
+   */
+  protected val appComponent: ApplicationComponent by lazy { (requireActivity().application as DuoApplication).appComponent }
+  protected val activityComponent: ActivityComponent by lazy { (activity as BaseActivity<*>).activityComponent }
 
   @Inject lateinit var baseMvvmViewDependenciesFactory: MvvmView.Dependencies.Factory
 

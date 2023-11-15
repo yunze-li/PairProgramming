@@ -1,45 +1,16 @@
 package com.duolingo.app.base
 
-import android.view.View
 import androidx.annotation.UiThread
-import androidx.annotation.VisibleForTesting
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
-import com.duolingo.app.exception.ErrorMessageFactory
 import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.core.Flowable
-import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.flowables.ConnectableFlowable
 
 /**
  * Abstract class representing a View Model in MVVM pattern.
  */
-abstract class BaseViewModel(private val errorMessageFactory: ErrorMessageFactory): ViewModel() {
-
-    protected val composite = CompositeDisposable()
-
-    @set:VisibleForTesting
-    var testMode: Boolean = false
-
-    abstract fun attach(view: Fragment)
-
-//    protected fun subscribeViewModel(view: View, vararg observables: Observable<UiState>) {
-//        if (!testMode) {
-//            composite.add(Observable.mergeArray(*observables).subscribe { view.render(it) })
-//        }
-//    }
-
-    protected fun getErrorMessage(error: Throwable): String = errorMessageFactory.getError(error)
-
-    fun detach() {
-        composite.clear()
-    }
-
-
-    /**
-     *  TODO: clean up this
-     */
+abstract class BaseViewModel: ViewModel() {
 
     private var hasConfigured: Boolean = false
 
@@ -68,7 +39,6 @@ abstract class BaseViewModel(private val errorMessageFactory: ErrorMessageFactor
             hasConfigured = true
         }
     }
-
 
 
     /** Adds new disposable to unsubscribe from when the view model cleared. */

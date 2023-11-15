@@ -36,11 +36,7 @@ interface MvvmView {
       .addObserver(
         LifecycleAwareFlowableObserver(
           flowable = flowable,
-          subscriptionCallback =
-            mvvmDependencies.uiUpdatePerformanceWrapper.wrapWhileStartedCallback(
-              subscriptionCallback,
-              subscriptionCallback::class.java.toString()
-            ),
+          subscriptionCallback = subscriptionCallback,
           observeOnScheduler = mvvmDependencies.schedulerProvider.main,
         )
       )
@@ -58,10 +54,7 @@ interface MvvmView {
   fun <T : Any?> observeWhileStarted(data: LiveData<T>, observer: Observer<in T>) {
     data.observe(
       mvvmDependencies.uiLifecycleOwnerProvider.invoke(),
-      mvvmDependencies.uiUpdatePerformanceWrapper.wrapObserver(
-        observer,
-        observer::class.java.toString()
-      )
+      observer,
     )
   }
 
@@ -78,7 +71,6 @@ interface MvvmView {
   interface Dependencies {
     val uiLifecycleOwnerProvider: () -> LifecycleOwner
     val schedulerProvider: SchedulerProvider
-    val uiUpdatePerformanceWrapper: PerformanceWrapper
 
     /** Factory for [Dependencies]. */
     interface Factory {

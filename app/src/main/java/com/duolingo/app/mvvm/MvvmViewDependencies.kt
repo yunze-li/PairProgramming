@@ -13,7 +13,6 @@ data class MvvmViewDependencies
 constructor(
   @Assisted override val uiLifecycleOwnerProvider: () -> LifecycleOwner,
   override val schedulerProvider: SchedulerProvider,
-  override val uiUpdatePerformanceWrapper: MvvmView.PerformanceWrapper,
 ) : MvvmView.Dependencies {
 
   /** Assisted DI factory for this dependency wrapper. */
