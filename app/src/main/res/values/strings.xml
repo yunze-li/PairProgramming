@@ -9,4 +9,7 @@
     <string name="error_view_oops">Oops</string>
     <string name="error_view_retry">RETRY</string>
     <string name="menu_link">Link</string>
+
+    <!-- Course -->
+    <string name="course_display_name_with_languages">%1$s -> %2$s</string>
 </resources>

@@ -3,7 +3,7 @@ package com.duolingo.app.di.components
 import android.app.Activity
 import com.duolingo.app.di.PerActivity
 import com.duolingo.app.di.modules.ActivityModule
-import com.duolingo.app.course.CourseListFragment
+import com.duolingo.app.courselist.CourseListFragment
 import com.duolingo.app.session.SessionFragment
 import dagger.BindsInstance
 import dagger.Subcomponent

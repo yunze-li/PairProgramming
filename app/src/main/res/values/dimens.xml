@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- dialogs -->
+    <dimen name="dialog_corner_radius">12dp</dimen>
+    <!-- Auto size min text size default -->
+    <dimen name="juicyAutoSizeMinTextSize">8sp</dimen>
+    <!-- #################### -->
+    <!-- ### Juicy dimens ### -->
+    <!-- #################### -->
+    <!-- Standard start/top/end margin for cap text in CardViews -->
+    <dimen name="juicyLengthNegative1">-16dp</dimen>
+    <dimen name="juicyLengthNegativeHalf">-8dp</dimen>
+    <dimen name="juicyLengthNegative2">-32dp</dimen>
+    <!-- Standard size for borders -->
+    <dimen name="juicyLengthEighth">2dp</dimen>
+    <!-- Standard margin for grid view items -->
+    <dimen name="juicyLengthQuarter">4dp</dimen>
+    <!-- Standard margin between icons and text inside buttons -->
+    <dimen name="juicyLengthHalf">8dp</dimen>
+    <!-- Standard margin between skill rows in the tree -->
+    <dimen name="juicyLengthThreeQuarters">12dp</dimen>
+    <!-- Standard margin around buttons -->
+    <dimen name="juicyLength1">16dp</dimen>
+    <dimen name="juicyLength1AndQuarter">20dp</dimen>
+    <dimen name="juicyLength1AndHalf">24dp</dimen>
+    <dimen name="juicyLength1AndThreeQuarters">28dp</dimen>
+    <dimen name="juicyLength2">32dp</dimen>
+    <dimen name="juicyLength2AndQuarter">36dp</dimen>
+    <dimen name="juicyLength2AndHalf">40dp</dimen>
+    <dimen name="juicyLengthThird">5dp</dimen>
+    <!-- Standard button height -->
+    <dimen name="juicyLength3">48dp</dimen>
+    <dimen name="juicyLength3andHalf">56dp</dimen>
+    <dimen name="juicyLength4">64dp</dimen>
+    <dimen name="juicyLength4andHalf">72dp</dimen>
+    <dimen name="juicyLength5">80dp</dimen>
+    <dimen name="juicyLength6">96dp</dimen>
+    <dimen name="juicyLength6AndHalf">104dp</dimen>
+    <dimen name="juicyLength7">112dp</dimen>
+    <!-- Standard thickness for lines -->
+    <dimen name="juicyStrokeWidthNegative1">-2dp</dimen>
+    <dimen name="juicyStrokeWidthHalf">1dp</dimen>
+    <dimen name="juicyStrokeWidth1">2dp</dimen>
+    <dimen name="juicyStrokeWidth2">3dp</dimen>
+    <!-- Font sizes -->
+    <dimen name="juicyTinyUppercase">13sp</dimen>
+    <dimen name="juicyCharacterCard">130sp</dimen>
+    <!-- Perfect lesson animation text size -->
+    <dimen name="juicyLength2AndHalfTextSize">40sp</dimen>
+</resources>

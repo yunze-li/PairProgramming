@@ -1,9 +1,10 @@
-package com.duolingo.app.course
+package com.duolingo.app.courselist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.duolingo.app.R
 import com.duolingo.app.databinding.CourseItemBinding
 import com.duolingo.domain.model.Course
 import io.reactivex.rxjava3.subjects.PublishSubject
@@ -41,8 +42,7 @@ class CourseAdapter : RecyclerView.Adapter<CourseAdapter.ViewHolder>() {
             courseClickIntent: PublishSubject<Course>,
 //            repoFavoriteIntent: PublishSubject<Pair<Int, Repo>>
         ) = with(itemView) {
-            binding.uiLanguageName.text = course.uiLanguage.fullname.uppercase()
-            binding.learningLanguageName.text = course.learningLanguage.fullname.uppercase()
+            binding.courseName.text = context.getString(R.string.course_display_name_with_languages, course.uiLanguage.name, course.learningLanguage.name)
 
             setOnClickListener { courseClickIntent.onNext(course) }
 //            binding.imageFavoriteRepo.setOnClickListener {

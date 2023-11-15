@@ -1,4 +1,4 @@
-package com.duolingo.app.course
+package com.duolingo.app.courselist
 
 import com.duolingo.app.base.Presenter
 import com.duolingo.app.exception.ErrorMessageFactory

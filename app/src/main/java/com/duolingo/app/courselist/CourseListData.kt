@@ -1,9 +1,8 @@
-package com.duolingo.app.course
+package com.duolingo.app.courselist
 
 import com.duolingo.app.base.ContentState
 import com.duolingo.app.base.LoadingState
 import com.duolingo.domain.model.Course
-import com.duolingo.domain.needCleanUp.Repo
 
 data class CourseListData(
     val loadingState: LoadingState = LoadingState.NONE,

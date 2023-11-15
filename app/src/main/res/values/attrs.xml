@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+    All `format` values for `attr`s that we invent should be declared in this
+    dummy styleable, which saves other styleables the trouble of worrying
+    whether an `attr` it uses has already had its `format` declared somewhere.
+    (Android only allows `format` to be declared once globally per `name`, and
+    you get an annoying compile-time error if you redeclare.)
+
+    https://medium.com/@elye.project/better-way-of-declaring-custom-view-attributes-23f876c28534
+  -->
+    <declare-styleable name="_AttrFormatDeclarations">
+        <attr format="dimension" name="borderWidth" />
+        <attr format="dimension" name="capRadius" />
+        <attr format="dimension" name="cornerRadius" />
+        <attr format="boolean" name="dimWhenDisabled" />
+        <attr format="color" name="disabledFaceColor" />
+        <attr format="color" name="disabledLipColor" />
+        <attr format="color" name="disabledTextColor" />
+        <attr format="color" name="faceColor" />
+        <attr format="reference" name="faceDrawable" />
+        <attr format="reference" name="lipDrawable" />
+        <attr format="color" name="lipColor" />
+        <attr format="color" name="selectedFaceColor" />
+        <attr format="color" name="selectedLipColor" />
+        <attr format="dimension" name="selectedBorderWidth" />
+        <attr format="color" name="strokeColor" />
+        <attr format="dimension" name="strokeWidth" />
+        <attr format="dimension" name="lipHeight" />
+        <attr format="enum" name="position">
+            <enum name="bottom" value="0" />
+            <enum name="bottom_no_top" value="1" />
+            <enum name="center_vertical" value="2" />
+            <enum name="center_vertical_no_top" value="3" />
+            <enum name="none" value="4" />
+            <enum name="top" value="5" />
+            <enum name="top_no_bottom" value="6" />
+            <enum name="top_full_bottom" value="7" />
+            <enum name="left" value="8" />
+            <enum name="right" value="9" />
+            <enum name="top_right" value="10" />
+            <enum name="top_right_more_rounded" value="11" />
+            <enum name="top_left" value="12" />
+            <enum name="top_left_more_rounded" value="13" />
+            <enum name="no_border" value="14" />
+            <enum name="top_right_bottom_left" value="15" />
+        </attr>
+        <attr format="boolean" name="selectable" />
+        <attr format="boolean" name="styleDisabledState" />
+        <attr format="color" name="selectedTextColor" />
+        <attr format="boolean" name="trimViewSize" />
+        <attr format="color" name="unselectedTextColor" />
+        <attr format="color" name="unselectedTransliterationColor" />
+        <attr format="color" name="selectedTransliterationColor" />
+        <attr format="color" name="borderColor" />
+        <attr format="color" name="selectedBorderColor" />
+    </declare-styleable>
+    <declare-styleable name="LipView">
+        <attr name="borderWidth" />
+        <attr name="cornerRadius" />
+        <attr name="dimWhenDisabled" />
+        <attr name="disabledFaceColor" />
+        <attr name="disabledLipColor" />
+        <attr name="disabledTextColor" />
+        <attr name="faceColor" />
+        <attr name="faceDrawable" />
+        <attr name="lipDrawable" />
+        <attr name="lipColor" />
+        <attr name="selectedFaceColor" />
+        <attr name="selectedLipColor" />
+        <attr name="selectedBorderWidth" />
+        <attr name="lipHeight" />
+        <attr name="position" />
+        <attr name="selectable" />
+        <attr name="styleDisabledState" />
+    </declare-styleable>
+    <declare-styleable name="CardView">
+        <attr name="android:enabled" />
+        <attr name="selectedFaceColor" />
+        <attr name="selectedLipColor" />
+        <attr name="selectedTextColor" />
+        <attr name="unselectedTextColor" />
+        <attr name="unselectedTransliterationColor" />
+        <attr name="selectedTransliterationColor" />
+        <attr name="selectedBorderWidth" />
+        <attr name="borderColor" />
+        <attr name="selectedBorderColor" />
+    </declare-styleable>
+    <declare-styleable name="JuicyTextView">
+        <attr name="capRadius" />
+        <attr name="strokeColor" />
+        <attr name="strokeWidth" />
+        <attr name="trimViewSize" />
+    </declare-styleable>
+
+    <attr format="color" name="progressIndicatorTint" />
+    <attr format="color" name="indicatorTint" />
+    <declare-styleable name="JuicyButton">
+        <attr name="progressIndicatorTint" />
+    </declare-styleable>
+</resources>

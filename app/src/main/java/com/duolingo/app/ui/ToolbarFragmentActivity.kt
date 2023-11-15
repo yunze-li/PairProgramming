@@ -1,4 +1,4 @@
-package com.duolingo.app.course
+package com.duolingo.app.ui
 
 import android.content.Context
 import android.content.Intent
@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import com.duolingo.app.R
 import com.duolingo.app.base.BaseActivity
+import com.duolingo.app.courselist.CourseListFragment
 import com.duolingo.app.databinding.ActivityLayoutToLoadFragmentBinding
 import com.duolingo.app.extensions.addFragment
 import com.duolingo.app.extensions.enableToolbar

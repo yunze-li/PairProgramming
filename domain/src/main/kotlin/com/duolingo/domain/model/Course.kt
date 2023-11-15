@@ -7,5 +7,5 @@ data class Course(
     val id: LongId<Course>,
     val uiLanguage: Language,
     val learningLanguage: Language,
-    val sessions: List<Session>,
+    val sessions: List<Session>? = null,
 )

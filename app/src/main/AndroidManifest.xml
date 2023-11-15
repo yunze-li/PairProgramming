@@ -11,7 +11,7 @@
         android:theme="@style/Base.Theme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".course.ToolbarFragmentActivity"
+            android:name=".ui.ToolbarFragmentActivity"
             android:theme="@style/Base.Theme"
             android:exported="true">
             <intent-filter>

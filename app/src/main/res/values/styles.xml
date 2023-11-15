@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Buttons -->
+    <style name="_BaseTextStylesForButtonsAndCardCaps">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <!-- Unit is em. Dividing desired letter-spacing of 0.8sp by textSize of 17sp gives 0.05 -->
+        <item name="android:letterSpacing">0.05</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="autoSizeMaxTextSize">17sp</item>
+        <item name="autoSizeMinTextSize">@dimen/juicyAutoSizeMinTextSize</item>
+    </style>
+    <style name="Link" parent="@style/_BaseTextStylesForButtonsAndCardCaps">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/juicy_link_text_blue</item>
+        <item name="borderWidth">0dp</item>
+        <item name="faceColor">@color/juicyTransparent</item>
+        <item name="lipColor">@color/juicyTransparent</item>
+        <item name="lipHeight">0dp</item>
+    </style>
+    <style name="TransparentButton" parent="@style/Link">
+        <item name="android:drawablePadding">@dimen/juicyLengthHalf</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:maxLines">1</item>
+        <!--
+          Here we hardcode a minHeight that matches both the would-be height of a drawableless
+          JuicyButton with juicyLength1 vertical padding and the actual height of a CardView containing
+          only a Caption1 JuicyTextView. (We can't just specify the vertical padding as juicyLength1
+          here because then JuicyButtons with drawables would be taller than those without drawables.)
+        -->
+        <item name="android:minHeight">52dp</item>
+        <item name="android:paddingEnd">@dimen/juicyLength1</item>
+        <item name="android:paddingStart">@dimen/juicyLength1</item>
+        <item name="cornerRadius">@dimen/juicyLength1</item>
+    </style>
+    <style name="SolidButton" parent="@style/TransparentButton">
+        <item name="android:textColor">@color/juicySnow</item>
+        <item name="faceColor">@color/juicyMacaw</item>
+        <item name="lipColor">@color/juicyWhale</item>
+        <item name="lipHeight">@dimen/juicyLengthQuarter</item>
+        <item name="progressIndicatorTint">@color/juicySnow</item>
+    </style>
+    <style name="SolidStickyButton" parent="@style/TransparentButton">
+        <item name="android:textColor">@color/juicyStickySnow</item>
+        <item name="faceColor">@color/juicyStickyMacaw</item>
+        <item name="lipColor">@color/juicyWhale</item>
+        <item name="lipHeight">@dimen/juicyLengthQuarter</item>
+        <item name="progressIndicatorTint">@color/juicyStickySnow</item>
+    </style>
+    <style name="SolidCosmosButton" parent="@style/SolidButton">
+        <item name="faceColor">@color/juicySuperCosmos</item>
+        <item name="lipColor">@color/juicySuperNebula</item>
+        <item name="android:textColor">@color/juicyStickySnow</item>
+        <item name="disabledFaceColor">@color/juicySwan</item>
+        <item name="disabledTextColor">@color/juicyStickySnowDark</item>
+    </style>
+    <style name="SolidStickyPlusButton" parent="@style/SolidButton">
+        <item name="faceColor">@color/juicyPlusHumpback</item>
+        <item name="lipColor">@color/juicyPlusNarwhal</item>
+        <item name="android:textColor">@color/juicyPlusSnow</item>
+        <item name="disabledFaceColor">@color/juicyStickySwan</item>
+        <item name="disabledTextColor">@color/juicyStickyHare</item>
+    </style>
+    <style name="SolidStickyDarkBluePlusButton" parent="@style/SolidButton">
+        <item name="faceColor">@color/juicyNarwhal</item>
+        <item name="lipColor">@color/juicy_blue_plus_dark</item>
+        <item name="android:textColor">@color/juicyPlusSnow</item>
+        <item name="disabledFaceColor">@color/juicyStickySwan</item>
+        <item name="disabledTextColor">@color/juicyStickyHare</item>
+    </style>
+    <style name="SolidStickyWhitePlusButton" parent="@style/SolidButton">
+        <item name="android:textColor">@color/juicyNarwhal</item>
+        <item name="faceColor">@color/juicyPlusSnow</item>
+        <item name="lipColor">@color/juicy_plus_white_button_lip</item>
+        <item name="borderWidth">1dp</item>
+        <item name="disabledFaceColor">@color/juicyStickySwan</item>
+        <item name="disabledTextColor">@color/juicyStickyHare</item>
+    </style>
+    <style name="SolidYellowButton" parent="@style/SolidButton">
+        <item name="faceColor">@color/juicyBee</item>
+        <item name="lipColor">@color/juicyFox</item>
+    </style>
+    <style name="GoldSolidLegendaryButton" parent="@style/SolidYellowButton">
+        <item name="lipColor">@color/juicyCamel</item>
+        <item name="android:textColor">@color/juicyStickyCowbird</item>
+    </style>
+
+    <!-- Cards -->
+    <style name="OutlineButton" parent="@style/TransparentButton">
+        <item name="android:textColor">@color/juicyMacaw</item>
+        <item name="borderWidth">2dp</item>
+        <item name="faceColor">@color/juicySnow</item>
+        <item name="lipColor">@color/juicySwan</item>
+        <item name="lipHeight">@dimen/juicyLengthQuarter</item>
+    </style>
+    <style name="_BaseCard" parent="@style/OutlineButton">
+        <item name="android:clipChildren">false</item>
+        <item name="android:clipToPadding">false</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:padding">@dimen/juicyLength1</item>
+        <item name="android:minWidth">@dimen/juicyLength3</item>
+    </style>
+    <style name="UnclickableCard" parent="@style/_BaseCard">
+        <item name="lipHeight">0dp</item>
+    </style>
+
+    <!-- Text -->
+    <style name="Paragraph">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:lineSpacingMultiplier">1.2</item>
+        <item name="android:textColor">@color/juicyEel</item>
+        <item name="android:textSize">19sp</item>
+        <!--
+          Note we do not auto scale text size with this style by default. This is because in some
+          situations we do not want auto sizing to scale similar texts differently, such as skill titles
+          on the tree. If you need it to, set a autoSizeTextType (generally we use `uniform`) in
+          addition to this style and verify that it looks okay.
+        -->
+        <item name="autoSizeTextType">none</item>
+        <item name="autoSizeMaxTextSize">19sp</item>
+        <item name="autoSizeMinTextSize">@dimen/juicyAutoSizeMinTextSize</item>
+    </style>
+    <style name="H1" parent="@style/Paragraph">
+        <item name="android:textSize">25sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:lineSpacingMultiplier">1.2</item>
+        <item name="autoSizeMaxTextSize">25sp</item>
+    </style>
+    <style name="H2" parent="@style/Paragraph">
+        <item name="android:textStyle">bold</item>
+        <item name="android:lineSpacingMultiplier">1.2</item>
+    </style>
+    <style name="H3" parent="@style/Paragraph">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:lineSpacingMultiplier">1.2</item>
+        <item name="autoSizeMaxTextSize">17sp</item>
+    </style>
+    <style name="TinyText" parent="@style/Paragraph">
+        <item name="android:textColor">@color/juicyMacaw</item>
+        <item name="android:textSize">13sp</item>
+        <item name="autoSizeMaxTextSize">13sp</item>
+    </style>
+    <style name="Caption1" parent="@style/Paragraph">
+        <item name="android:textColor">@color/juicyWolf</item>
+    </style>
+    <style name="Caption2" parent="@style/Caption1">
+        <item name="android:textSize">17sp</item>
+        <item name="autoSizeMaxTextSize">17sp</item>
+    </style>
+    <style name="Caption3" parent="@style/Caption1">
+        <item name="android:textSize">15sp</item>
+        <item name="autoSizeMaxTextSize">15sp</item>
+    </style>
+</resources>

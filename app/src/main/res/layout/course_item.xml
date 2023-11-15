@@ -7,50 +7,27 @@
     android:layout_height="wrap_content"
     android:background="?android:attr/selectableItemBackground">
 
-    <TextView
-        android:id="@+id/uiLanguageName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginVertical="10dp"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textColor="@color/primary_text"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/arrow"
+    <com.duolingo.app.ui.CardView
+        android:layout_height="@dimen/juicyLength5"
+        android:layout_width="match_parent"
+        android:layout_margin="@dimen/juicyLength1"
+        android:minHeight="?android:attr/listPreferredItemHeight"
+        android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="English" />
+        app:layout_constraintEnd_toEndOf="parent"
+        style="@style/UnclickableCard"
+        >
 
-    <TextView
-        android:id="@+id/arrow"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginVertical="10dp"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textColor="@color/primary_text"
-        android:textSize="20sp"
-        android:text="->"
-        app:layout_constraintStart_toEndOf="@+id/uiLanguageName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/courseName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:textAllCaps="true"
+            style="@style/H2"
+            tools:text="English -> Chinese" />
 
-    <TextView
-        android:id="@+id/learningLanguageName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginVertical="10dp"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textColor="@color/primary_text"
-        android:textSize="20sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/arrow"
-        tools:text="Chinese" />
+    </com.duolingo.app.ui.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

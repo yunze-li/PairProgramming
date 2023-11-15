@@ -1,4 +1,4 @@
-package com.duolingo.app.course
+package com.duolingo.app.courselist
 
 import androidx.appcompat.app.AppCompatActivity
 import com.duolingo.app.session.SessionActivity

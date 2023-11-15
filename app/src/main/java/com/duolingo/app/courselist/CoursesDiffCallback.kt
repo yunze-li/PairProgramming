@@ -1,4 +1,4 @@
-package com.duolingo.app.course
+package com.duolingo.app.courselist
 
 import androidx.annotation.Nullable
 import androidx.recyclerview.widget.DiffUtil
