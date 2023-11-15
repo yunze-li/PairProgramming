@@ -9,16 +9,9 @@ import com.duolingo.app.base.BaseActivity
 import com.duolingo.app.databinding.ActivityLayoutToLoadFragmentBinding
 import com.duolingo.app.extensions.addFragment
 import com.duolingo.app.extensions.enableToolbar
-import com.duolingo.data.persistence.AppDatabase
 
 class CourseListActivity : BaseActivity<ActivityLayoutToLoadFragmentBinding>() {
 
-    companion object {
-        fun newIntent(context: Context): Intent =
-            Intent(context, CourseListActivity::class.java)
-    }
-
-    // View Binding
     override val bindingInflater: (LayoutInflater) -> ActivityLayoutToLoadFragmentBinding =
         ActivityLayoutToLoadFragmentBinding::inflate
 
@@ -26,9 +19,6 @@ class CourseListActivity : BaseActivity<ActivityLayoutToLoadFragmentBinding>() {
         // Make sure this is before calling super.onCreate
         setTheme(R.style.Base_Theme)
         super.onCreate(savedInstanceState)
-
-        val database = AppDatabase.getInstance(this)
-
         initializeActivity(savedInstanceState)
     }
 
@@ -41,5 +31,10 @@ class CourseListActivity : BaseActivity<ActivityLayoutToLoadFragmentBinding>() {
         if (savedInstanceState == null) {
             addFragment(R.id.container, CourseListFragment.newInstance())
         }
+    }
+
+    companion object {
+        fun newIntent(context: Context): Intent =
+            Intent(context, CourseListActivity::class.java)
     }
 }

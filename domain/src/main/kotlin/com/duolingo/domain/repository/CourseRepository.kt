@@ -20,7 +20,7 @@ interface CourseRepository {
     /**
      * Get current course data.
      */
-    fun observeCourse(courseId: LongId<Course>): Single<Course>
+    fun observeCourse(courseId: LongId<Course>): Flowable<Course>
 
     /**
      * Get all available courses for this user.

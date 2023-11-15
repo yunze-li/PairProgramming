@@ -41,15 +41,11 @@ class CourseDataRepository(
 //            }
     }
 
-    override fun observeCourse(
-        courseId: LongId<Course>,
-    ): Single<Course> =
-        Single.just(courses.first { it.id == courseId })
+    override fun observeCourse(courseId: LongId<Course>): Flowable<Course> =
+        Single.just(courses.first { it.id == courseId }).toFlowable()
 
     override fun observeAllAvailableCourses(): Flowable<List<Course>> =
         Single.just(courses).toFlowable()
-//        courseProcessor.getAllCourses()
-//            .map { it.map { courseEntity -> courseConverter.convert(courseEntity) } }
 
     override fun downloadCourse(courseId: LongId<Course>): Completable {
 //        Completable.fromAction { duoApi.downloadCourse(courseId.get()) }

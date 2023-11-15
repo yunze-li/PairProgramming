@@ -18,22 +18,8 @@ import io.reactivex.rxjava3.subjects.PublishSubject
 
 class SessionActivity : BaseActivity<ActivityLayoutToLoadFragmentBinding>() {
 
-    companion object {
-        private const val EXTRA_COURSE_ID = "extra_course_id"
-
-        fun newIntent(context: Context, courseId: LongId<Course>): Intent =
-            Intent(context, SessionActivity::class.java).apply {
-                putExtra(EXTRA_COURSE_ID, courseId.get())
-            }
-    }
-
-    // Properties
     private val courseId: Long by lazy { getLongExtra(EXTRA_COURSE_ID) }
 
-    // Intent
-    internal val intentActionLink = PublishSubject.create<Unit>()
-
-    // View Binding
     override val bindingInflater: (LayoutInflater) -> ActivityLayoutToLoadFragmentBinding =
         ActivityLayoutToLoadFragmentBinding::inflate
 
@@ -44,7 +30,7 @@ class SessionActivity : BaseActivity<ActivityLayoutToLoadFragmentBinding>() {
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-        enableToolbar(true, "start session")
+        enableToolbar(true, "Session")
     }
 
     private fun initializeActivity(savedInstanceState: Bundle?) {
@@ -60,9 +46,18 @@ class SessionActivity : BaseActivity<ActivityLayoutToLoadFragmentBinding>() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.action_link) {
-            intentActionLink.onNext(Unit)
+            // TODO: handle link icon clicked
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    companion object {
+        private const val EXTRA_COURSE_ID = "extra_course_id"
+
+        fun newIntent(context: Context, courseId: LongId<Course>): Intent =
+            Intent(context, SessionActivity::class.java).apply {
+                putExtra(EXTRA_COURSE_ID, courseId.get())
+            }
     }
 
 }
