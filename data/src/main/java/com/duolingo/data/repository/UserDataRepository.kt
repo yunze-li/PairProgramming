@@ -5,7 +5,6 @@ import com.duolingo.data.di.providers.NetworkChecker
 import com.duolingo.data.persistence.processor.UserProcessor
 import com.duolingo.domain.model.User
 import com.duolingo.domain.model.id.LongId
-import com.duolingo.domain.needCleanUp.Repo
 import com.duolingo.domain.repository.UserRepository
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
@@ -50,12 +49,4 @@ class UserDataRepository(
 //                userProcessor.updateUser(it)
 //            }
     }
-
-    override fun observeMockRepo(): Single<List<Repo>> =
-        Single.just(
-            listOf(
-                Repo(1L, "test repo 1", "test description 1", "test url 1", true, "yunze"),
-                Repo(2L, "test repo 2", "test description 2", "test url 2", false, "yunze"),
-            )
-        )
 }

@@ -1,4 +1,4 @@
-package com.duolingo.app.ui
+package com.duolingo.app.courselist
 
 import android.content.Context
 import android.content.Intent
@@ -6,16 +6,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import com.duolingo.app.R
 import com.duolingo.app.base.BaseActivity
-import com.duolingo.app.courselist.CourseListFragment
 import com.duolingo.app.databinding.ActivityLayoutToLoadFragmentBinding
 import com.duolingo.app.extensions.addFragment
 import com.duolingo.app.extensions.enableToolbar
+import com.duolingo.data.persistence.AppDatabase
 
-class ToolbarFragmentActivity : BaseActivity<ActivityLayoutToLoadFragmentBinding>() {
+class CourseListActivity : BaseActivity<ActivityLayoutToLoadFragmentBinding>() {
 
     companion object {
         fun newIntent(context: Context): Intent =
-            Intent(context, ToolbarFragmentActivity::class.java)
+            Intent(context, CourseListActivity::class.java)
     }
 
     // View Binding
@@ -26,6 +26,9 @@ class ToolbarFragmentActivity : BaseActivity<ActivityLayoutToLoadFragmentBinding
         // Make sure this is before calling super.onCreate
         setTheme(R.style.Base_Theme)
         super.onCreate(savedInstanceState)
+
+        val database = AppDatabase.getInstance(this)
+
         initializeActivity(savedInstanceState)
     }
 

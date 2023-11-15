@@ -39,6 +39,13 @@ abstract class UserDao : BaseDao<UserEntity> {
     abstract fun updateOrInsertUser(newUser: UserEntity): Completable
 
     /**
+     * Insert all users in [users]
+     * @param users     All [User]s need to insert
+     */
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    abstract fun insertAllUsers(users: List<UserEntity>): Completable
+
+    /**
      * Update user's current course
      * @param userId    The user id
      * @param courseId  The new current course id

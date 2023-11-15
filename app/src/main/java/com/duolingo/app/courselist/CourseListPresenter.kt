@@ -2,7 +2,6 @@ package com.duolingo.app.courselist
 
 import com.duolingo.app.base.Presenter
 import com.duolingo.app.exception.ErrorMessageFactory
-import com.duolingo.domain.needCleanUp.Repo
 import com.duolingo.domain.repository.CourseRepository
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.kotlin.addTo
@@ -37,10 +36,6 @@ class CourseListPresenter
     }
 
     private fun retryRepo(userName: String): Observable<CourseListData> {
-        TODO("implement this")
-    }
-
-    private fun favoriteRepo(position: Int, repo: Repo): Observable<CourseListData> {
         TODO("implement this")
     }
 

@@ -4,6 +4,7 @@ import android.content.Context
 import com.duolingo.data.persistence.AppDatabase
 import com.duolingo.data.persistence.DatabaseFactory
 import com.duolingo.data.persistence.dao.CourseDao
+import com.duolingo.data.persistence.dao.SessionDao
 import com.duolingo.data.persistence.dao.UserDao
 import dagger.Module
 import dagger.Provides
@@ -18,7 +19,7 @@ class PersistenceModule {
     @Provides
     @Singleton
     internal fun provideAppDatabase(context: Context): AppDatabase =
-        DatabaseFactory.getDatabase(context)
+        AppDatabase.getInstance(context)
 
     @Provides
     @Singleton
@@ -27,6 +28,10 @@ class PersistenceModule {
     @Provides
     @Singleton
     internal fun provideCourseDao(appDatabase: AppDatabase): CourseDao = appDatabase.courseDao()
+
+    @Provides
+    @Singleton
+    internal fun provideSessionDao(appDatabase: AppDatabase): SessionDao = appDatabase.sessionDao()
 
 
 }

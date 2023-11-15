@@ -2,6 +2,7 @@ package com.duolingo.data.persistence
 
 import android.content.Context
 import androidx.room.Room
+import androidx.room.RoomDatabase
 import com.duolingo.data.R
 
 /** Factory to create the database instance. */

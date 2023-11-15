@@ -2,6 +2,6 @@
 <resources>
 
     <!-- DATABASE -->
-    <string name="DATABASE_NAME">DatabaseName</string>
+    <string name="DATABASE_NAME">DuolingoCourse</string>
 
 </resources>

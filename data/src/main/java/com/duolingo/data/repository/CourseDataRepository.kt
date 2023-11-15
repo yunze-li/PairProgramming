@@ -26,8 +26,8 @@ class CourseDataRepository(
 
     private val courses = listOf(
         Course(LongId(1L), Language.ENGLISH, Language.SPANISH),
-        Course(LongId(2L), Language.ENGLISH, Language.CHINESE),
-        Course(LongId(3L), Language.CHINESE, Language.JAPANESE),
+        Course(LongId(2L), Language.CHINESE, Language.JAPANESE),
+        Course(LongId(3L), Language.SPANISH, Language.CHINESE),
     )
 
     override fun refreshCourse(courseId: LongId<Course>): Completable {

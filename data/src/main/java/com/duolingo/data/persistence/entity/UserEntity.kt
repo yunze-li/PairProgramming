@@ -19,11 +19,12 @@ class UserEntity(
 ) {
 
     companion object {
+
         // TABLE
         const val USER_TABLE = "user"
 
         // COLUMN
-        const val USER_ID = "id"
+        const val USER_ID = "user_id"
         const val USER_NAME = "name"
         const val USER_AGE = "age"
         const val USER_EMAIL = "email"
@@ -32,6 +33,35 @@ class UserEntity(
         const val USER_LONGEST_STREAK = "longest_streak"
         const val USER_CURRENT_STREAK = "current_streak"
         const val USER_XP = "xp"
+
+        /**
+         * Initialize mock user data
+         */
+        fun initializeMockUsers(): List<UserEntity> =
+            listOf(
+                UserEntity(
+                    id = 1L,
+                    name = "John Doe",
+                    age = 25,
+                    email = "johndoe@duolingo.com",
+                    isTrialUser = false,
+                    currentCourseId = 1L,
+                    longestStreak = 35,
+                    currentStreak = 35,
+                    xp = 850L,
+                ),
+                UserEntity(
+                    id = 2L,
+                    name = "Bill Thomas",
+                    age = 39,
+                    email = "billthomas@duolingo.com",
+                    isTrialUser = true,
+                    currentCourseId = 3L,
+                    longestStreak = 348,
+                    currentStreak = 69,
+                    xp = 39850L,
+                ),
+            )
     }
 
 }
