@@ -6,48 +6,32 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.duolingo.app.R
 import com.duolingo.app.databinding.CourseItemBinding
-import com.duolingo.domain.model.Course
-import io.reactivex.rxjava3.subjects.PublishSubject
 
 class CourseAdapter : RecyclerView.Adapter<CourseAdapter.ViewHolder>() {
 
-    val repoClickIntent: PublishSubject<Course> = PublishSubject.create()
-//    val repoFavoriteIntent: PublishSubject<Pair<Int, Repo>> = PublishSubject.create()
+    private var courseUiModels: MutableList<CourseListViewModel.CourseUiModel> = mutableListOf()
 
-    private var data: MutableList<Course> = mutableListOf()
-
-    fun setData(newData: List<Course>) {
-        val diffResult = DiffUtil.calculateDiff(CoursesDiffCallback(data, newData))
-        data.clear()
-        data.addAll(newData)
+    fun setData(newData: List<CourseListViewModel.CourseUiModel>) {
+        val diffResult = DiffUtil.calculateDiff(CourseUiModelDiffCallback(courseUiModels, newData))
+        courseUiModels.clear()
+        courseUiModels.addAll(newData)
         diffResult.dispatchUpdatesTo(this)
-    }
-
-    fun setData(position: Int, course: Course) {
-        data[position] = course
-        notifyItemChanged(position)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(CourseItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-        holder.bind(data[position], repoClickIntent)
+        holder.bind(courseUiModels[position])
 
-    override fun getItemCount() = data.size
+    override fun getItemCount() = courseUiModels.size
 
     class ViewHolder(private val binding: CourseItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(
-            course: Course,
-            courseClickIntent: PublishSubject<Course>,
-//            repoFavoriteIntent: PublishSubject<Pair<Int, Repo>>
+            courseUiModel: CourseListViewModel.CourseUiModel,
         ) = with(itemView) {
-            binding.courseName.text = context.getString(R.string.course_display_name_with_languages, course.uiLanguage.name, course.learningLanguage.name)
-
-            setOnClickListener { courseClickIntent.onNext(course) }
-//            binding.imageFavoriteRepo.setOnClickListener {
-//                repoFavoriteIntent.onNext(Pair(absoluteAdapterPosition, repo))
-//            }
+            binding.courseName.text = context.getString(R.string.course_display_name_with_languages, courseUiModel.uiLanguageText, courseUiModel.learningLanguageText)
+            setOnClickListener { courseUiModel.onCourseClick.invoke() }
         }
     }
 }

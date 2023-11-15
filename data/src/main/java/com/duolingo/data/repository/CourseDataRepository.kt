@@ -9,6 +9,7 @@ import com.duolingo.domain.model.Language
 import com.duolingo.domain.model.id.LongId
 import com.duolingo.domain.repository.CourseRepository
 import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Single
 
 /**
@@ -44,11 +45,9 @@ class CourseDataRepository(
         courseId: LongId<Course>,
     ): Single<Course> =
         Single.just(courses.first { it.id == courseId })
-//        courseProcessor.get(courseId.get())
-//            .map { courseConverter.convert(it) }
 
-    override fun observeAllAvailableCourses(): Single<List<Course>> =
-        Single.just(courses)
+    override fun observeAllAvailableCourses(): Flowable<List<Course>> =
+        Single.just(courses).toFlowable()
 //        courseProcessor.getAllCourses()
 //            .map { it.map { courseEntity -> courseConverter.convert(courseEntity) } }
 

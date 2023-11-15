@@ -4,6 +4,7 @@ import com.duolingo.domain.model.Course
 import com.duolingo.domain.model.id.LongId
 
 import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Single
 
 /** An interface defined repository of course data. */
@@ -24,7 +25,7 @@ interface CourseRepository {
     /**
      * Get all available courses for this user.
      */
-    fun observeAllAvailableCourses(): Single<List<Course>>
+    fun observeAllAvailableCourses(): Flowable<List<Course>>
 
     /**
      * Download a course which matches the [courseId].
