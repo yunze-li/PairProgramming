@@ -1,7 +1,7 @@
-package com.duolingo.app.path
+package com.duolingo.app.course
 
 import androidx.appcompat.app.AppCompatActivity
-import com.duolingo.app.repo.SessionActivity
+import com.duolingo.app.session.SessionActivity
 import com.duolingo.domain.model.Course
 import com.duolingo.domain.model.id.LongId
 import javax.inject.Inject

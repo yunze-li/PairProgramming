@@ -1,4 +1,4 @@
-package com.duolingo.app.repo
+package com.duolingo.app.session
 
 import com.duolingo.app.base.ContentState
 import com.duolingo.app.base.LoadingState

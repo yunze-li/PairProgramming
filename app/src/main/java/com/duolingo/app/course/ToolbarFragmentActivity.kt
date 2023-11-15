@@ -1,4 +1,4 @@
-package com.duolingo.app.path
+package com.duolingo.app.course
 
 import android.content.Context
 import android.content.Intent

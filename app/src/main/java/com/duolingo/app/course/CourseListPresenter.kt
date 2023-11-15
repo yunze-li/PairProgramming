@@ -1,4 +1,4 @@
-package com.duolingo.app.path
+package com.duolingo.app.course
 
 import com.duolingo.app.base.Presenter
 import com.duolingo.app.exception.ErrorMessageFactory
@@ -19,8 +19,6 @@ class CourseListPresenter
         val loadRepo = view.intentLoadData().flatMap { loadRepo() }
         val refreshRepo = view.intentRefreshData().flatMap { refreshData(it) }
         val retryRepo = view.intentErrorRetry().flatMap { retryRepo(it) }
-//        val favoriteRepo =
-//            view.intentFavorite().flatMap { (position, repo) -> favoriteRepo(position, repo) }
 
         subscribeViewModel(view, loadRepo, refreshRepo, retryRepo)
 

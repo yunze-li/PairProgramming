@@ -1,4 +1,4 @@
-package com.duolingo.app.path
+package com.duolingo.app.course
 
 import com.duolingo.app.base.ContentState
 import com.duolingo.app.base.LoadingState
@@ -9,8 +9,6 @@ data class CourseListData(
     val loadingState: LoadingState = LoadingState.NONE,
     val contentState: ContentState = ContentState.NONE,
     val data: List<Course>? = null,
-//    val favoriteRepo: Repo? = null,
-//    val favoriteRepoPosition: Int? = null,
     val errorMessage: String? = null,
     val snackMessage: String? = null
 ) {
@@ -25,13 +23,6 @@ data class CourseListData(
 
         fun createData(data: List<Course>) =
             CourseListData(contentState = ContentState.CONTENT, data = data)
-
-        fun createFavoriteRepo(position: Int, repo: Repo) =
-            CourseListData(
-                contentState = ContentState.CONTENT,
-//                favoriteRepo = repo,
-//                favoriteRepoPosition = position
-            )
 
         fun createError(error: String) =
             CourseListData(contentState = ContentState.ERROR, errorMessage = error)

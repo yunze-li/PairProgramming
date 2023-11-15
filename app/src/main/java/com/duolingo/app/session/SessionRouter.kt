@@ -1,4 +1,4 @@
-package com.duolingo.app.repo
+package com.duolingo.app.session
 
 import androidx.appcompat.app.AppCompatActivity
 import javax.inject.Inject

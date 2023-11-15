@@ -1,4 +1,4 @@
-package com.duolingo.app.repo
+package com.duolingo.app.session
 
 import android.content.Context
 import android.content.Intent

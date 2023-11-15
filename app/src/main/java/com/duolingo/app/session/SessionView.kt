@@ -1,4 +1,4 @@
-package com.duolingo.app.repo
+package com.duolingo.app.session
 
 import com.duolingo.app.base.LoadDataView
 import io.reactivex.rxjava3.core.Observable

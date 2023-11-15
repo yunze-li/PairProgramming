@@ -1,8 +1,7 @@
-package com.duolingo.app.path
+package com.duolingo.app.course
 
 import com.duolingo.app.base.LoadDataView
 import com.duolingo.domain.model.Course
-import com.duolingo.domain.needCleanUp.Repo
 
 import io.reactivex.rxjava3.core.Observable
 

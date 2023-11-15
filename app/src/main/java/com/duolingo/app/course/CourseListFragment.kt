@@ -1,4 +1,4 @@
-package com.duolingo.app.path
+package com.duolingo.app.course
 
 import android.os.Bundle
 import android.view.LayoutInflater

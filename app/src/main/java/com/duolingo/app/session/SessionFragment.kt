@@ -1,4 +1,4 @@
-package com.duolingo.app.repo
+package com.duolingo.app.session
 
 import android.os.Bundle
 import android.view.LayoutInflater
