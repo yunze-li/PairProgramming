@@ -27,12 +27,4 @@
 
     </FrameLayout>
 
-    <include
-        layout="@layout/progress_layout"
-        android:visibility="gone" />
-
-    <include
-        layout="@layout/error_layout"
-        android:visibility="gone" />
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

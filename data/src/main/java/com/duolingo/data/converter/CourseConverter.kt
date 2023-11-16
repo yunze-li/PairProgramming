@@ -33,14 +33,6 @@ class CourseConverter
         }
     }
 
-//    /**
-//     * Convert a Collection of [CourseDTO] into a List of [Course].
-//     * @param dtoCollection Object Collection to be transformed.
-//     * @return list of [Course]
-//     */
-//    fun convert(dtoCollection: Collection<CourseDTO>): List<Course> =
-//        dtoCollection.map { convert(it) }
-
     /**
      * Convert a [CourseEntity] into an [Course].
      * @param entity    Object to be transformed.
@@ -61,14 +53,6 @@ class CourseConverter
     }
 
 //    /**
-//     * Convert a Collection of [CourseEntity] into a List of [Course].
-//     * @param entityCollection Object Collection to be transformed.
-//     * @return list of [Course]
-//     */
-//    fun convert(entityCollection: Collection<CourseEntity>): List<Course> =
-//        entityCollection.map { convert(it) }
-
-//    /**
 //     * Convert a [Course] into an [CourseEntity].
 //     * @param course    [Course] object to be transformed.
 //     * @return [Course] if [CourseEntity] is valid, otherwise null.
@@ -80,12 +64,4 @@ class CourseConverter
 //            uiLanguageId = course.uiLanguage.languageId,
 //            learningLanguageId = course.learningLanguage.languageId,
 //        )
-//
-//    /**
-//     * Convert a Collection of [Course] into a List of [CourseEntity].
-//     * @param modelCollection Object Collection to be transformed.
-//     * @return list of [CourseEntity]
-//     */
-//    fun convertToEntity(modelCollection: Collection<Course>): List<CourseEntity> =
-//        modelCollection.map { convertToEntity(it) }
 }

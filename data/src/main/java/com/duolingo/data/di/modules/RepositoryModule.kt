@@ -1,6 +1,7 @@
 package com.duolingo.data.di.modules
 
 import com.duolingo.data.converter.CourseConverter
+import com.duolingo.data.converter.SessionConverter
 import com.duolingo.data.converter.UserConverter
 import com.duolingo.data.di.providers.NetworkChecker
 import com.duolingo.data.extensions.api
@@ -46,8 +47,10 @@ class RepositoryModule {
     @Provides
     @Singleton
     internal fun provideSessionDataRepository(
+        retrofit: Retrofit,
         networkChecker: NetworkChecker,
+        sessionConverter: SessionConverter,
     ): SessionRepository =
-        SessionDataRepository(networkChecker)
+        SessionDataRepository(retrofit.api(), networkChecker, sessionConverter)
 
 }

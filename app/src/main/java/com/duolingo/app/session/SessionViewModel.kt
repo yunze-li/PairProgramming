@@ -23,12 +23,12 @@ class SessionViewModel
     private lateinit var challengeIterator: Iterator<Challenge>
 
     fun configure() = configureOnce {
-        sessionRepository.observeChallengesForSession(sessionId)
-            .firstElement()
-            .subscribe { challenges ->
-                challengeIterator = challenges.iterator()
-                challengeProcessor.offer(challengeIterator.next())
-            }.unsubscribeOnCleared()
+//        sessionRepository.observeChallengesForSession(sessionId)
+//            .firstElement()
+//            .subscribe { challenges ->
+//                challengeIterator = challenges.iterator()
+//                challengeProcessor.offer(challengeIterator.next())
+//            }.unsubscribeOnCleared()
     }
 
     private val challengeProcessor = rxProcessorFactory.behavior<Challenge>()

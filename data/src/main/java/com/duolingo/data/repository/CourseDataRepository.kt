@@ -1,10 +1,12 @@
 package com.duolingo.data.repository
 
+import android.util.Log
 import com.duolingo.data.converter.CourseConverter
 import com.duolingo.data.di.providers.NetworkChecker
 import com.duolingo.data.network.api.DuoApi
 import com.duolingo.data.persistence.processor.CourseProcessor
 import com.duolingo.domain.model.Course
+import com.duolingo.domain.model.Language
 import com.duolingo.domain.model.User
 import com.duolingo.domain.model.id.LongId
 import com.duolingo.domain.repository.CourseRepository
@@ -23,12 +25,6 @@ class CourseDataRepository(
 
     override val isConnected: Boolean
         get() = networkChecker.isConnected
-
-//    private val courses = listOf(
-//        Course(LongId(1L), Language.ENGLISH, Language.SPANISH),
-//        Course(LongId(2L), Language.CHINESE, Language.JAPANESE),
-//        Course(LongId(3L), Language.SPANISH, Language.CHINESE),
-//    )
 
     override fun fetchCourse(courseId: LongId<Course>): Flowable<Course> {
         return duoApi.getCourse(courseId.get())

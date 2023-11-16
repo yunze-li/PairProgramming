@@ -22,7 +22,6 @@
         </activity>
         <activity android:name=".sessionlist.SessionListActivity" />
         <activity android:name=".session.SessionActivity" />
-        <activity android:name=".debug.DebugActivity" />
     </application>
 
 </manifest>

@@ -16,12 +16,8 @@ class SessionListViewModel
     private val router: SessionListRouter,
 ) : BaseViewModel() {
 
-    fun configure() = configureOnce {
-        // TODO: add something in here
-    }
-
     val sessionElements = Flowable.defer {
-        sessionRepository.observeSessions(courseId)
+        sessionRepository.fetchAllSessions(courseId)
             .map { sessions ->
                 sessions.map { session ->
                     SessionElement(

@@ -3,6 +3,7 @@ package com.duolingo.domain.repository
 import com.duolingo.domain.model.Challenge
 import com.duolingo.domain.model.Course
 import com.duolingo.domain.model.Session
+import com.duolingo.domain.model.User
 import com.duolingo.domain.model.id.LongId
 
 import io.reactivex.rxjava3.core.Completable
@@ -15,13 +16,13 @@ interface SessionRepository {
     val isConnected: Boolean
 
     /**
-     * Get all sessions inside for a single course.
+     * Fetch a session remotely which matches the [sessionId].
      */
-    fun observeSessions(courseId: LongId<Course>): Flowable<List<Session>>
+    fun fetchSession(sessionId: LongId<Session>): Flowable<Session>
 
     /**
-     * Get all challenges for a single session.
+     * Fetch all sessions remotely for this course which matches the [courseId].
      */
-    fun observeChallengesForSession(sessionId: LongId<Session>): Flowable<List<Challenge>>
+    fun fetchAllSessions(courseId: LongId<Course>): Flowable<List<Session>>
 
 }

@@ -1,18 +1,13 @@
 package com.duolingo.data.network.api
 
 import com.duolingo.data.network.dto.CourseDTO
+import com.duolingo.data.network.dto.SessionDTO
 
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
-import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface DuoApi {
-
-//    @GET("duolingo-gateway/user/{userId}")
-//    fun getUser(
-//        @Path("userId") userId: Long,
-//    ): Single<UserDTO>
 
     @GET("duolingo-gateway/course/{courseId}")
     fun getCourse(
@@ -24,14 +19,13 @@ interface DuoApi {
         @Path("userId") userId: Long,
     ): Single<List<CourseDTO>>
 
-    @POST("duolingo-gateway/course/{courseId}/download")
-    fun downloadCourse(
-        @Path("courseId") courseId: Long,
-    )
+    @GET("duolingo-gateway/session/{sessionId}")
+    fun getSession(
+        @Path("sessionId") sessionId: Long,
+    ): Single<SessionDTO>
 
-    @POST("duolingo-gateway/course/{courseId}/invalidate")
-    fun invalidateCourse(
+    @GET("duolingo-gateway/sessions/{courseId}")
+    fun getAllSessions(
         @Path("courseId") courseId: Long,
-    )
-
+    ): Single<List<SessionDTO>>
 }

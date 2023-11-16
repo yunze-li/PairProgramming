@@ -11,6 +11,7 @@ class MockInterceptor: Interceptor {
         val uri = chain.request().url().uri().toString()
         val responseString = when {
             uri.contains("duolingo-gateway/courses/") -> allCoursesJson
+            uri.contains("duolingo-gateway/sessions/") -> allSessionsJson
             else -> ""
         }
 
@@ -60,6 +61,72 @@ class MockInterceptor: Interceptor {
                 "id": $COURSE_ID_5,
                 "ui_language_id": "en",
                 "learning_language_id": "it"
+            }]
+        """
+
+        private const val SESSION_ID_1 = 100001L
+        private const val SESSION_ID_2 = 100002L
+        private const val SESSION_ID_3 = 100003L
+        private const val SESSION_ID_4 = 100004L
+        private const val SESSION_ID_5 = 100005L
+        private const val SESSION_ID_6 = 100006L
+        private const val SESSION_ID_7 = 100007L
+        private const val SESSION_ID_8 = 100008L
+        private const val SESSION_ID_9 = 100009L
+        private const val allSessionsJson = """
+            [{
+                "id": $SESSION_ID_1,
+                "difficulty": 2,
+                "displayName": "travel",
+                "isCompleted": false
+            },
+            {
+                "id": $SESSION_ID_2,
+                "difficulty": 2,
+                "displayName": "family",
+                "isCompleted": false
+            },
+            {
+                "id": $SESSION_ID_3,
+                "difficulty": 2,
+                "displayName": "work",
+                "isCompleted": false
+            },
+            {
+                "id": $SESSION_ID_4,
+                "difficulty": 2,
+                "displayName": "movie",
+                "isCompleted": false
+            },
+            {
+                "id": $SESSION_ID_5,
+                "difficulty": 2,
+                "displayName": "music",
+                "isCompleted": false
+            },
+            {
+                "id": $SESSION_ID_6,
+                "difficulty": 2,
+                "displayName": "love",
+                "isCompleted": false
+            },
+            {
+                "id": $SESSION_ID_7,
+                "difficulty": 2,
+                "displayName": "sports",
+                "isCompleted": false
+            },
+            {
+                "id": $SESSION_ID_8,
+                "difficulty": 2,
+                "displayName": "restaurant",
+                "isCompleted": false
+            },
+            {
+                "id": $SESSION_ID_9,
+                "difficulty": 2,
+                "displayName": "cafe",
+                "isCompleted": false
             }]
         """
     }

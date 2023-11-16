@@ -19,7 +19,7 @@ interface CourseRepository {
     fun fetchCourse(courseId: LongId<Course>): Flowable<Course>
 
     /**
-     * Fetch a course remotely for this user which matches the [userId].
+     * Fetch all courses remotely for this user which matches the [userId].
      */
     fun fetchAllCourses(userId: LongId<User>): Flowable<List<Course>>
 
