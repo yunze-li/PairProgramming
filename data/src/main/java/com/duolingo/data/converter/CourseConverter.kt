@@ -21,7 +21,7 @@ class CourseConverter
      */
     fun convert(dto: CourseDTO): Course {
         val uiLanguage = Language.fromLanguageId(dto.uiLanguageId)
-        val learningLanguage = Language.fromLanguageId(dto.uiLanguageId)
+        val learningLanguage = Language.fromLanguageId(dto.learningLanguageId)
         if (uiLanguage == null || learningLanguage == null) {
              throw IllegalArgumentException("Invalid language found from CourseDTO, ui_language_id: ${dto.uiLanguageId}, learning_language_id: ${dto.learningLanguageId}")
         } else {

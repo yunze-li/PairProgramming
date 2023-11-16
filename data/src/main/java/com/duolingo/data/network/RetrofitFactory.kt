@@ -16,8 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object RetrofitFactory {
 
     // Base URL: always ends with /
-//    private const val URL_MAIN_WEBSERVICE = "https://duolingo.com/"
-    private const val URL_MAIN_WEBSERVICE = "https://api.github.com/"
+    private const val URL_MAIN_WEBSERVICE = "https://duolingo.com/"
 
     /**
      * Get [Retrofit] instance.

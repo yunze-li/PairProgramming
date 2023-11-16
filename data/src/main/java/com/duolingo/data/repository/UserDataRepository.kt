@@ -14,7 +14,7 @@ import io.reactivex.rxjava3.core.Single
  * [RepoRepository] for retrieving user data.
  */
 class UserDataRepository(
-//    private val duoApi: DuoApi,
+    private val duoApi: DuoApi,
     private val networkChecker: NetworkChecker,
     private val userConverter: UserConverter,
     private val userProcessor: UserProcessor,

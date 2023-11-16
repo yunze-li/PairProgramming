@@ -10,18 +10,13 @@ import javax.inject.Inject
 class CourseListViewModel
 @Inject constructor(
     private val courseRepository: CourseRepository,
+    private val userRepository: UserRepository,
     private val router: CourseListRouter,
 ) : BaseViewModel() {
 
-    fun configure() = configureOnce {
-//        courseRepository.fetchCourse(LongId(1L)).subscribe(
-//            { course -> println("YunzeDebug: course: $course") },
-//            { error -> println("YunzeDebug: error: $error") }
-//        ).unsubscribeOnCleared()
-    }
-
     val courseElements = Flowable.defer {
-        courseRepository.observeAllAvailableCourses()
+        // TODO: use user id in here
+        courseRepository.fetchAllCourses(LongId(1L))
             .map { courses ->
                 courses.map { course ->
                     CourseElement(

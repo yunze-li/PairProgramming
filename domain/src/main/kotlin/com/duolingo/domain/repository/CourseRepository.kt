@@ -1,6 +1,7 @@
 package com.duolingo.domain.repository
 
 import com.duolingo.domain.model.Course
+import com.duolingo.domain.model.User
 import com.duolingo.domain.model.id.LongId
 
 import io.reactivex.rxjava3.core.Completable
@@ -18,14 +19,9 @@ interface CourseRepository {
     fun fetchCourse(courseId: LongId<Course>): Flowable<Course>
 
     /**
-     * Get current course data.
+     * Fetch a course remotely for this user which matches the [userId].
      */
-    fun observeCourse(courseId: LongId<Course>): Flowable<Course>
-
-    /**
-     * Get all available courses for this user.
-     */
-    fun observeAllAvailableCourses(): Flowable<List<Course>>
+    fun fetchAllCourses(userId: LongId<User>): Flowable<List<Course>>
 
     /**
      * Download a course which matches the [courseId].

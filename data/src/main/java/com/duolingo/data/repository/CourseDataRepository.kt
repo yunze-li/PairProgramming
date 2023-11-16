@@ -1,18 +1,15 @@
 package com.duolingo.data.repository
 
-import android.util.Log
 import com.duolingo.data.converter.CourseConverter
 import com.duolingo.data.di.providers.NetworkChecker
 import com.duolingo.data.network.api.DuoApi
 import com.duolingo.data.persistence.processor.CourseProcessor
 import com.duolingo.domain.model.Course
-import com.duolingo.domain.model.Language
+import com.duolingo.domain.model.User
 import com.duolingo.domain.model.id.LongId
 import com.duolingo.domain.repository.CourseRepository
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
-import io.reactivex.rxjava3.core.Single
-import kotlin.io.path.createTempDirectory
 
 /**
  * [RepoRepository] for retrieving course data.
@@ -20,35 +17,31 @@ import kotlin.io.path.createTempDirectory
 class CourseDataRepository(
     private val courseConverter: CourseConverter,
     private val courseProcessor: CourseProcessor,
-//    private val duoApi: DuoApi,
+    private val duoApi: DuoApi,
     private val networkChecker: NetworkChecker
 ) : CourseRepository {
 
     override val isConnected: Boolean
         get() = networkChecker.isConnected
 
-    private val courses = listOf(
-        Course(LongId(1L), Language.ENGLISH, Language.SPANISH),
-        Course(LongId(2L), Language.CHINESE, Language.JAPANESE),
-        Course(LongId(3L), Language.SPANISH, Language.CHINESE),
-    )
+//    private val courses = listOf(
+//        Course(LongId(1L), Language.ENGLISH, Language.SPANISH),
+//        Course(LongId(2L), Language.CHINESE, Language.JAPANESE),
+//        Course(LongId(3L), Language.SPANISH, Language.CHINESE),
+//    )
 
     override fun fetchCourse(courseId: LongId<Course>): Flowable<Course> {
-        return Single.just(courses.first { it.id == courseId }).toFlowable()
-//        return duoApi.getCourse(courseId.get())
-//            .map { courseConverter.convert(it) }
-//            .toFlowable()
-//            .map { courseConverter.convertToEntity(it) }
-//            .flatMapCompletable {
-//                courseProcessor.updateCourse(it)
-//            }
+        return duoApi.getCourse(courseId.get())
+            .map { courseConverter.convert(it) }
+            .toFlowable()
     }
 
-    override fun observeCourse(courseId: LongId<Course>): Flowable<Course> =
-        Single.just(courses.first { it.id == courseId }).toFlowable()
-
-    override fun observeAllAvailableCourses(): Flowable<List<Course>> =
-        Single.just(courses).toFlowable()
+    override fun fetchAllCourses(userId: LongId<User>): Flowable<List<Course>> {
+        return duoApi.getAllCourses(userId.get())
+            .map {
+                it.map { courseDto -> courseConverter.convert(courseDto) }
+            }.toFlowable()
+    }
 
     override fun downloadCourse(courseId: LongId<Course>): Completable {
 //        Completable.fromAction { duoApi.downloadCourse(courseId.get()) }

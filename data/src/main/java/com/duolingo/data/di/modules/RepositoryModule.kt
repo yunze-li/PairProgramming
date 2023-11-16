@@ -31,7 +31,7 @@ class RepositoryModule {
         userConverter: UserConverter,
         userProcessor: UserProcessor,
     ): UserRepository =
-        UserDataRepository(networkChecker, userConverter, userProcessor)
+        UserDataRepository(retrofit.api(), networkChecker, userConverter, userProcessor)
 
     @Provides
     @Singleton
@@ -41,7 +41,7 @@ class RepositoryModule {
         courseConverter: CourseConverter,
         courseProcessor: CourseProcessor,
     ): CourseRepository =
-        CourseDataRepository(courseConverter, courseProcessor, networkChecker)
+        CourseDataRepository(courseConverter, courseProcessor, retrofit.api(), networkChecker)
 
     @Provides
     @Singleton
