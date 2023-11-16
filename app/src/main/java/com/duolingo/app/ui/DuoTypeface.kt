@@ -20,8 +20,6 @@ object DuoTypeface {
    * version (5.1.5) that introduced a change in which we removed our homemade font cache.
    *
    * https://console.firebase.google.com/u/0/project/duolingo.com:fleet-diagram-694/crashlytics/app/android:com.duolingo/issues/adef160359e3448551c0d0f8b9a557eb
-   * https://github.com/duolingo/duolingo-android/pull/11808
-   * https://github.com/duolingo/duolingo-android/pull/19331
    */
   fun getDefaultTypeface(context: Context): Typeface =
     checkNotNull(

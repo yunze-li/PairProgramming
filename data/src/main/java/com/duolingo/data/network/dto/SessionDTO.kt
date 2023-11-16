@@ -1,4 +1,4 @@
-package com.duolingo.data.net.dto
+package com.duolingo.data.network.dto
 
 import com.duolingo.domain.model.Challenge
 import com.duolingo.domain.model.id.LongId

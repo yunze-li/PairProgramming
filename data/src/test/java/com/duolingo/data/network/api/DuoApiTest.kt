@@ -1,9 +1,9 @@
-package com.duolingo.data.net.api
+package com.duolingo.data.network.api
 
 import android.content.Context
 import com.google.gson.Gson
-import com.duolingo.data.net.OkHttpClientFactoryTest
-import com.duolingo.data.net.RetrofitFactory
+import com.duolingo.data.network.OkHttpClientFactoryTest
+import com.duolingo.data.network.RetrofitFactory
 import io.mockk.mockk
 import org.junit.Test
 

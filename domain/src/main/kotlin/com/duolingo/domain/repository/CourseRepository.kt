@@ -13,9 +13,9 @@ interface CourseRepository {
     val isConnected: Boolean
 
     /**
-     * Refresh a course which matches the [courseId].
+     * Fetch a course remotely which matches the [courseId].
      */
-    fun refreshCourse(courseId: LongId<Course>): Completable
+    fun fetchCourse(courseId: LongId<Course>): Flowable<Course>
 
     /**
      * Get current course data.

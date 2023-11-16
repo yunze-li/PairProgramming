@@ -1,4 +1,4 @@
-package com.duolingo.data.net
+package com.duolingo.data.network
 
 import android.content.Context
 import okhttp3.OkHttpClient

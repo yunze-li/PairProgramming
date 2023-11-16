@@ -1,6 +1,6 @@
 package com.duolingo.data.converter
 
-import com.duolingo.data.net.dto.CourseDTO
+import com.duolingo.data.network.dto.CourseDTO
 import com.duolingo.data.persistence.entity.CourseEntity
 import com.duolingo.domain.model.Course
 import com.duolingo.domain.model.Language

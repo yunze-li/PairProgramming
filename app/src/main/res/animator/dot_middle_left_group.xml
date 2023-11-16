@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<set
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:ordering="sequentially"
+>
+  <set android:ordering="together">
+    <objectAnimator
+      android:duration="@integer/dot_middle_animation_step_ms"
+      android:interpolator="@android:anim/accelerate_decelerate_interpolator"
+      android:propertyName="scaleX"
+      android:valueFrom="@dimen/dot_middle_animation_full_size"
+      android:valueTo="@dimen/dot_middle_animation_small_size"
+      android:valueType="floatType"
+    />
+    <objectAnimator
+      android:duration="@integer/dot_middle_animation_step_ms"
+      android:interpolator="@android:anim/accelerate_decelerate_interpolator"
+      android:propertyName="scaleY"
+      android:valueFrom="@dimen/dot_middle_animation_full_size"
+      android:valueTo="@dimen/dot_middle_animation_small_size"
+      android:valueType="floatType"
+    />
+  </set>
+  <!-- delay for 1 step -->
+  <objectAnimator
+    android:duration="@integer/dot_middle_animation_step_ms"
+    android:propertyName="scaleX"
+    android:valueFrom="@dimen/dot_middle_animation_small_size"
+    android:valueTo="@dimen/dot_middle_animation_small_size"
+    android:valueType="floatType"
+  />
+  <set android:ordering="together">
+    <objectAnimator
+      android:duration="@integer/dot_middle_animation_step_ms"
+      android:interpolator="@android:anim/accelerate_decelerate_interpolator"
+      android:propertyName="scaleX"
+      android:valueFrom="@dimen/dot_middle_animation_small_size"
+      android:valueTo="@dimen/dot_middle_animation_full_size"
+      android:valueType="floatType"
+    />
+    <objectAnimator
+      android:duration="@integer/dot_middle_animation_step_ms"
+      android:interpolator="@android:anim/accelerate_decelerate_interpolator"
+      android:propertyName="scaleY"
+      android:valueFrom="@dimen/dot_middle_animation_small_size"
+      android:valueTo="@dimen/dot_middle_animation_full_size"
+      android:valueType="floatType"
+    />
+  </set>
+</set>

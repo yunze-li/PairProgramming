@@ -21,6 +21,7 @@ class CourseListFragment : MvvmFragment<FragmentCourseListBinding>(FragmentCours
         binding.recyclerView.adapter = courseElementAdapter
 
         whileStarted(viewModel.courseElements) { courseElementAdapter.setCourseElement(it) }
+        viewModel.configure()
     }
 
     companion object {

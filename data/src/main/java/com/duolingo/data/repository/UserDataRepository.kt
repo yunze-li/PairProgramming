@@ -2,6 +2,7 @@ package com.duolingo.data.repository
 
 import com.duolingo.data.converter.UserConverter
 import com.duolingo.data.di.providers.NetworkChecker
+import com.duolingo.data.network.api.DuoApi
 import com.duolingo.data.persistence.processor.UserProcessor
 import com.duolingo.domain.model.User
 import com.duolingo.domain.model.id.LongId

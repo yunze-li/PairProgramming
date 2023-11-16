@@ -2,7 +2,7 @@ package com.duolingo.data.repository
 
 import com.duolingo.data.converter.CourseConverter
 import com.duolingo.data.di.providers.NetworkChecker
-import com.duolingo.data.net.api.DuoApi
+import com.duolingo.data.network.api.DuoApi
 import com.duolingo.data.persistence.processor.CourseProcessor
 import io.mockk.mockk
 import org.junit.Before

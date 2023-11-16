@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<set
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:ordering="sequentially"
+>
+  <objectAnimator
+    android:duration="@integer/dot_small_animation_step_ms"
+    android:propertyName="fillAlpha"
+    android:valueFrom="@dimen/dot_small_animation_low_alpha"
+    android:valueTo="@dimen/dot_middle_animation_low_alpha"
+    android:valueType="floatType"
+  />
+  <objectAnimator
+    android:duration="@integer/dot_small_animation_step_ms"
+    android:propertyName="fillAlpha"
+    android:valueFrom="@dimen/dot_small_animation_low_alpha"
+    android:valueTo="@dimen/dot_small_animation_full_alpha"
+    android:valueType="floatType"
+  />
+  <objectAnimator
+    android:duration="@integer/dot_small_animation_step_ms"
+    android:propertyName="fillAlpha"
+    android:valueFrom="@dimen/dot_small_animation_full_alpha"
+    android:valueTo="@dimen/dot_small_animation_low_alpha"
+    android:valueType="floatType"
+  />
+</set>

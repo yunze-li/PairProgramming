@@ -1,7 +1,9 @@
 package com.duolingo.app.courselist
 
 import com.duolingo.app.base.BaseViewModel
+import com.duolingo.domain.model.id.LongId
 import com.duolingo.domain.repository.CourseRepository
+import com.duolingo.domain.repository.UserRepository
 import io.reactivex.rxjava3.core.Flowable
 import javax.inject.Inject
 
@@ -12,7 +14,10 @@ class CourseListViewModel
 ) : BaseViewModel() {
 
     fun configure() = configureOnce {
-        // TODO: add something in here
+//        courseRepository.fetchCourse(LongId(1L)).subscribe(
+//            { course -> println("YunzeDebug: course: $course") },
+//            { error -> println("YunzeDebug: error: $error") }
+//        ).unsubscribeOnCleared()
     }
 
     val courseElements = Flowable.defer {

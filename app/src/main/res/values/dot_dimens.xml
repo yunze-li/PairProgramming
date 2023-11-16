@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+  <!-- Dot loading indicator -->
+  <integer name="dot_small_animation_step_ms">400</integer>
+  <item
+    format="float"
+    name="dot_small_animation_small_size"
+    type="dimen"
+  >0.8</item>
+  <item
+    format="float"
+    name="dot_small_animation_full_size"
+    type="dimen"
+  >1.0</item>
+  <item
+    format="float"
+    name="dot_middle_animation_small_size"
+    type="dimen"
+  >0.9</item>
+  <item
+    format="float"
+    name="dot_small_animation_mid_alpha"
+    type="dimen"
+  >0.5</item>
+  <item
+    format="float"
+    name="dot_small_animation_full_alpha"
+    type="dimen"
+  >1.0</item>
+  <item
+    format="float"
+    name="dot_small_animation_low_alpha"
+    type="dimen"
+  >0.25</item>
+  <integer name="dot_middle_animation_step_ms">600</integer>
+  <item
+    format="float"
+    name="dot_middle_animation_low_alpha"
+    type="dimen"
+  >0.5</item>
+  <item
+    format="float"
+    name="dot_middle_animation_full_alpha"
+    type="dimen"
+  >1.0</item>
+  <item
+    format="float"
+    name="dot_middle_animation_mid_alpha"
+    type="dimen"
+  >0.8</item>
+  <item
+    format="float"
+    name="dot_middle_animation_full_size"
+    type="dimen"
+  >1.0</item>
+</resources>

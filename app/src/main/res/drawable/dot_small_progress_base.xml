@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<vector
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:height="10dp"
+  android:viewportHeight="10"
+  android:viewportWidth="40"
+  android:width="40dp"
+>
+  <group android:name="dot_left_group" android:pivotX="5" android:pivotY="5">
+    <path
+      android:fillColor="#000000"
+      android:name="dot_left_path"
+      android:pathData="M 5 5     m -5, 0     a 5,5 0 1,0 10,0     a 5,5 0 1,0 -10,0"
+    />
+  </group>
+  <group
+    android:name="dot_center_group"
+    android:pivotX="5"
+    android:pivotY="5"
+    android:translateX="15"
+  >
+    <path
+      android:fillColor="#000000"
+      android:name="dot_center_path"
+      android:pathData="M 5 5     m -5, 0     a 5,5 0 1,0 10,0     a 5,5 0 1,0 -10,0"
+    />
+  </group>
+  <group
+    android:name="dot_right_group"
+    android:pivotX="5"
+    android:pivotY="5"
+    android:translateX="30"
+  >
+    <path
+      android:fillColor="#000000"
+      android:name="dot_right_path"
+      android:pathData="M 5 5     m -5, 0     a 5,5 0 1,0 10,0     a 5,5 0 1,0 -10,0"
+    />
+  </group>
+</vector>

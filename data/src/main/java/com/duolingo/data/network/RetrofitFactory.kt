@@ -1,8 +1,9 @@
-package com.duolingo.data.net
+package com.duolingo.data.network
 
 import android.content.Context
 
 import com.google.gson.Gson
+import okhttp3.Interceptor
 
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
@@ -15,7 +16,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 object RetrofitFactory {
 
     // Base URL: always ends with /
-    private const val URL_MAIN_WEBSERVICE = "https://duolingo.com/"
+//    private const val URL_MAIN_WEBSERVICE = "https://duolingo.com/"
+    private const val URL_MAIN_WEBSERVICE = "https://api.github.com/"
 
     /**
      * Get [Retrofit] instance.
@@ -24,13 +26,14 @@ object RetrofitFactory {
     fun getRetrofit(
         context: Context,
         gson: Gson,
-        okHttpClientFactory: OkHttpClientFactory
+        okHttpClientFactory: OkHttpClientFactory,
+        mockInterceptor: Interceptor,
     ): Retrofit =
         Retrofit.Builder()
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .baseUrl(URL_MAIN_WEBSERVICE)
-            .client(okHttpClientFactory.createOkHttpClient(context))
+            .client(okHttpClientFactory.createOkHttpClient(context, mockInterceptor))
             .build()
 
 }

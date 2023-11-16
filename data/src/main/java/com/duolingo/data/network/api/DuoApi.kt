@@ -1,7 +1,7 @@
-package com.duolingo.data.net.api
+package com.duolingo.data.network.api
 
-import com.duolingo.data.net.dto.CourseDTO
-import com.duolingo.data.net.dto.UserDTO
+import com.duolingo.data.network.dto.CourseDTO
+import com.duolingo.data.network.dto.UserDTO
 
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET

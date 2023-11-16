@@ -17,4 +17,14 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
+    <com.duolingo.app.ui.JuicyButton
+        android:id="@+id/debugButton"
+        android:layout_gravity="end|bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/juicyLength2"
+        android:layout_marginEnd="@dimen/juicyLength1"
+        style="@style/SolidButton"
+        android:text="debug"/>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

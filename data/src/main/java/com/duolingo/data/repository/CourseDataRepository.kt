@@ -1,8 +1,9 @@
 package com.duolingo.data.repository
 
+import android.util.Log
 import com.duolingo.data.converter.CourseConverter
 import com.duolingo.data.di.providers.NetworkChecker
-import com.duolingo.data.net.api.DuoApi
+import com.duolingo.data.network.api.DuoApi
 import com.duolingo.data.persistence.processor.CourseProcessor
 import com.duolingo.domain.model.Course
 import com.duolingo.domain.model.Language
@@ -11,6 +12,7 @@ import com.duolingo.domain.repository.CourseRepository
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Single
+import kotlin.io.path.createTempDirectory
 
 /**
  * [RepoRepository] for retrieving course data.
@@ -31,10 +33,11 @@ class CourseDataRepository(
         Course(LongId(3L), Language.SPANISH, Language.CHINESE),
     )
 
-    override fun refreshCourse(courseId: LongId<Course>): Completable {
-        TODO("add refresh course")
-//        duoApi.getCourse(courseId.get())
+    override fun fetchCourse(courseId: LongId<Course>): Flowable<Course> {
+        return Single.just(courses.first { it.id == courseId }).toFlowable()
+//        return duoApi.getCourse(courseId.get())
 //            .map { courseConverter.convert(it) }
+//            .toFlowable()
 //            .map { courseConverter.convertToEntity(it) }
 //            .flatMapCompletable {
 //                courseProcessor.updateCourse(it)

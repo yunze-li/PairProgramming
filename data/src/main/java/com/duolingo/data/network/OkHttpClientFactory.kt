@@ -1,8 +1,9 @@
-package com.duolingo.data.net
+package com.duolingo.data.network
 
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.duolingo.data.BuildConfig
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import java.util.concurrent.TimeUnit
 
@@ -11,7 +12,7 @@ import java.util.concurrent.TimeUnit
  */
 open class OkHttpClientFactory {
 
-    open fun createOkHttpClient(context: Context): OkHttpClient =
+    open fun createOkHttpClient(context: Context, interceptor: Interceptor): OkHttpClient =
         OkHttpClient.Builder()
             .apply {
                 if (BuildConfig.DEBUG) {
@@ -19,6 +20,7 @@ open class OkHttpClientFactory {
                 }
                 updateTimeout()
             }
+            .addInterceptor(interceptor)
             .build()
 
 

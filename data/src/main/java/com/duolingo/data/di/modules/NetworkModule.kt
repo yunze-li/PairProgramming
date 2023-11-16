@@ -3,10 +3,12 @@ package com.duolingo.data.di.modules
 import android.content.Context
 import com.google.gson.Gson
 import com.duolingo.data.di.providers.NetworkChecker
-import com.duolingo.data.net.OkHttpClientFactory
-import com.duolingo.data.net.RetrofitFactory
+import com.duolingo.data.network.MockInterceptor
+import com.duolingo.data.network.OkHttpClientFactory
+import com.duolingo.data.network.RetrofitFactory
 import dagger.Module
 import dagger.Provides
+import okhttp3.Interceptor
 import retrofit2.Retrofit
 import javax.inject.Singleton
 
@@ -14,7 +16,7 @@ import javax.inject.Singleton
  * Dagger module that provides Net class.
  */
 @Module
-class NetModule {
+class NetworkModule {
 
     @Provides
     @Singleton
@@ -33,8 +35,13 @@ class NetModule {
     internal fun provideRetrofit(
         context: Context,
         gson: Gson,
-        okHttpClientFactory: OkHttpClientFactory
+        okHttpClientFactory: OkHttpClientFactory,
+        mockInterceptor: Interceptor,
     ): Retrofit =
-        RetrofitFactory.getRetrofit(context, gson, okHttpClientFactory)
+        RetrofitFactory.getRetrofit(context, gson, okHttpClientFactory, mockInterceptor)
+
+    @Provides
+    @Singleton
+    internal fun provideMockInterceptor(): Interceptor = MockInterceptor()
 
 }

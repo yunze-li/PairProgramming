@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<animated-vector
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:drawable="@drawable/dot_small_progress_base"
+>
+  <target
+    android:animation="@animator/dot_small_left_group"
+    android:name="dot_left_group"
+  />
+  <target
+    android:animation="@animator/dot_small_left_path"
+    android:name="dot_left_path"
+  />
+  <target
+    android:animation="@animator/dot_small_center_group"
+    android:name="dot_center_group"
+  />
+  <target
+    android:animation="@animator/dot_small_center_path"
+    android:name="dot_center_path"
+  />
+  <target
+    android:animation="@animator/dot_small_right_group"
+    android:name="dot_right_group"
+  />
+  <target
+    android:animation="@animator/dot_small_right_path"
+    android:name="dot_right_path"
+  />
+</animated-vector>

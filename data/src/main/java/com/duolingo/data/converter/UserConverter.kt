@@ -1,6 +1,6 @@
 package com.duolingo.data.converter
 
-import com.duolingo.data.net.dto.UserDTO
+import com.duolingo.data.network.dto.UserDTO
 import com.duolingo.data.persistence.entity.UserEntity
 import com.duolingo.domain.model.Streak
 import com.duolingo.domain.model.User
