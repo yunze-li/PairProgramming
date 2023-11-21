@@ -4,6 +4,7 @@ import android.content.Context
 import com.duolingo.data.di.modules.NetworkModule
 import com.duolingo.data.di.modules.PersistenceModule
 import com.duolingo.data.di.modules.RepositoryModule
+import com.duolingo.domain.repository.ChallengeRepository
 import com.duolingo.domain.repository.CourseRepository
 import com.duolingo.domain.repository.SessionRepository
 import com.duolingo.domain.repository.UserRepository
@@ -25,5 +26,7 @@ interface DataComponent {
     fun provideCourseRepository(): CourseRepository
 
     fun provideSessionRepository(): SessionRepository
+
+    fun providesChallengeRepository(): ChallengeRepository
 
 }

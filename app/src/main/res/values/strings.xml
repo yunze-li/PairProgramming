@@ -13,4 +13,7 @@
     <!-- Course -->
     <string name="course_display_name_with_languages">%1$s -> %2$s</string>
     <string name="session_difficulty_title">Difficulty</string>
+
+    <!-- Challenge -->
+    <string name="challenge_title_prefix">Select the correct meaning of</string>
 </resources>

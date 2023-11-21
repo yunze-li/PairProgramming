@@ -1,5 +1,6 @@
 package com.duolingo.data.di.modules
 
+import com.duolingo.data.converter.ChallengeConverter
 import com.duolingo.data.converter.CourseConverter
 import com.duolingo.data.converter.SessionConverter
 import com.duolingo.data.converter.UserConverter
@@ -7,9 +8,11 @@ import com.duolingo.data.di.providers.NetworkChecker
 import com.duolingo.data.extensions.api
 import com.duolingo.data.persistence.processor.CourseProcessor
 import com.duolingo.data.persistence.processor.UserProcessor
+import com.duolingo.data.repository.ChallengeDataRepository
 import com.duolingo.data.repository.CourseDataRepository
 import com.duolingo.data.repository.SessionDataRepository
 import com.duolingo.data.repository.UserDataRepository
+import com.duolingo.domain.repository.ChallengeRepository
 import com.duolingo.domain.repository.CourseRepository
 import com.duolingo.domain.repository.SessionRepository
 import com.duolingo.domain.repository.UserRepository
@@ -52,5 +55,14 @@ class RepositoryModule {
         sessionConverter: SessionConverter,
     ): SessionRepository =
         SessionDataRepository(retrofit.api(), networkChecker, sessionConverter)
+
+    @Provides
+    @Singleton
+    internal fun provideChallengeDataRepository(
+        challengeConverter: ChallengeConverter,
+        retrofit: Retrofit,
+        networkChecker: NetworkChecker,
+    ): ChallengeRepository =
+        ChallengeDataRepository(challengeConverter, retrofit.api(), networkChecker)
 
 }

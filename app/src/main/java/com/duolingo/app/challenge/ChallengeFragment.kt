@@ -1,11 +1,13 @@
 package com.duolingo.app.challenge
 
 import android.os.Bundle
+import com.duolingo.app.R
 import com.duolingo.app.databinding.FragmentChallengeBinding
 import com.duolingo.app.extensions.build
 import com.duolingo.app.extensions.getSerializableArg
 import com.duolingo.app.mvvm.MvvmFragment
 import com.duolingo.domain.model.Challenge
+import com.duolingo.domain.model.ChallengeType
 
 class ChallengeFragment : MvvmFragment<FragmentChallengeBinding>(FragmentChallengeBinding::inflate) {
 
@@ -21,16 +23,13 @@ class ChallengeFragment : MvvmFragment<FragmentChallengeBinding>(FragmentChallen
     }
 
     override fun onViewCreated(binding: FragmentChallengeBinding, savedInstanceState: Bundle?) {
-        when (val challenge = getSerializableArg(ARGS_CHALLENGE) as Challenge) {
-            is Challenge.ForwardTranslationChallenge -> {
-                binding.optionText1.text = challenge.data.first
-                binding.optionText2.text = challenge.data.second
-                binding.optionText3.text = challenge.data.third
-                binding.optionText4.text = challenge.data.fourth
-            }
-            else -> {
-                // TODO: add support in here
-            }
+        val challenge = getSerializableArg(ARGS_CHALLENGE) as Challenge
+        binding.targetWord.text = challenge.question
+        if (challenge.type == ChallengeType.FORWARD_TRANSLATION) {
+            binding.optionText1.text = challenge.option1
+            binding.optionText2.text = challenge.option2
+            binding.optionText3.text = challenge.option3
+            binding.optionText4.text = challenge.option4
         }
     }
 

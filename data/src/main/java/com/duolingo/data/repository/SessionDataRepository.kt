@@ -14,7 +14,7 @@ import io.reactivex.rxjava3.core.Single
 import kotlin.coroutines.coroutineContext
 
 /**
- * [RepoRepository] for retrieving course data.
+ * [SessionRepository] for retrieving course data.
  */
 class SessionDataRepository(
     private val duoApi: DuoApi,

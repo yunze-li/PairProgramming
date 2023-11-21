@@ -11,12 +11,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:maxLines="1"
+        android:gravity="center_horizontal"
+        android:text="@string/challenge_title_prefix"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/targetWord"
+        app:layout_constraintVertical_chainStyle="packed"
+        style="@style/H1" />
+
+    <TextView
+        android:id="@+id/targetWord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:gravity="center_horizontal"
+        android:textSize="36sp"
+        android:textColor="@color/juicyWhale"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"
         app:layout_constraintBottom_toTopOf="@+id/optionCard1"
         style="@style/H1"
-        tools:text="Choose your answer" />
+        tools:text="car" />
 
     <com.duolingo.app.ui.CardView
         android:id="@+id/optionCard1"

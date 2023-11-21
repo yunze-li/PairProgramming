@@ -4,6 +4,7 @@ import com.duolingo.app.base.BaseViewModel
 import com.duolingo.domain.model.Challenge
 import com.duolingo.domain.model.Session
 import com.duolingo.domain.model.id.LongId
+import com.duolingo.domain.repository.ChallengeRepository
 import com.duolingo.domain.repository.CourseRepository
 import com.duolingo.domain.repository.SessionRepository
 import com.duolingo.rxjava.processor.RxProcessor
@@ -17,18 +18,18 @@ class SessionViewModel
 @AssistedInject constructor(
     @Assisted private val sessionId: LongId<Session>,
     rxProcessorFactory: RxProcessor.Factory,
-    private val sessionRepository: SessionRepository,
+    private val challengeRepository: ChallengeRepository,
 ) : BaseViewModel() {
 
     private lateinit var challengeIterator: Iterator<Challenge>
 
     fun configure() = configureOnce {
-//        sessionRepository.observeChallengesForSession(sessionId)
-//            .firstElement()
-//            .subscribe { challenges ->
-//                challengeIterator = challenges.iterator()
-//                challengeProcessor.offer(challengeIterator.next())
-//            }.unsubscribeOnCleared()
+        challengeRepository.fetchChallenges(sessionId)
+            .firstElement()
+            .subscribe { challenges ->
+                challengeIterator = challenges.iterator()
+                challengeProcessor.offer(challengeIterator.next())
+            }.unsubscribeOnCleared()
     }
 
     private val challengeProcessor = rxProcessorFactory.behavior<Challenge>()

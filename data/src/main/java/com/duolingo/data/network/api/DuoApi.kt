@@ -1,5 +1,6 @@
 package com.duolingo.data.network.api
 
+import com.duolingo.data.network.dto.ChallengeDTO
 import com.duolingo.data.network.dto.CourseDTO
 import com.duolingo.data.network.dto.SessionDTO
 
@@ -28,4 +29,9 @@ interface DuoApi {
     fun getAllSessions(
         @Path("courseId") courseId: Long,
     ): Single<List<SessionDTO>>
+
+    @GET("duolingo-gateway/challenges/{sessionId}")
+    fun getAllChallenges(
+        @Path("sessionId") sessionId: Long,
+    ): Single<List<ChallengeDTO>>
 }

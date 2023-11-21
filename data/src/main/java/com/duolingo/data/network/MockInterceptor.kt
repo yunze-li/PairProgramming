@@ -12,6 +12,9 @@ class MockInterceptor: Interceptor {
         val responseString = when {
             uri.contains("duolingo-gateway/courses/") -> allCoursesJson
             uri.contains("duolingo-gateway/sessions/") -> allSessionsJson
+            uri.contains("duolingo-gateway/challenges/$SESSION_ID_1") -> session1ChallengesJson
+            uri.contains("duolingo-gateway/challenges/$SESSION_ID_2") -> session2ChallengesJson
+            uri.contains("duolingo-gateway/challenges/") -> generalChallengesJson
             else -> ""
         }
 
@@ -127,6 +130,86 @@ class MockInterceptor: Interceptor {
                 "difficulty": 2,
                 "displayName": "cafe",
                 "isCompleted": false
+            }]
+        """
+
+        private const val CHALLENGE_ID_1 = 1000001L
+        private const val CHALLENGE_ID_2 = 1000001L
+        private const val CHALLENGE_ID_3 = 1000001L
+        private const val session1ChallengesJson = """
+            [{
+                "id": $CHALLENGE_ID_1,
+                "type": "FORWARD_TRANSLATION",
+                "question": "car",
+                "option1": "bike",
+                "option2": "car",
+                "option3": "train",
+                "option4": "airplane",
+                "answer": "car"
+            },
+            {
+                "id": $CHALLENGE_ID_2,
+                "type": "FORWARD_TRANSLATION",
+                "question": "passport",
+                "option1": "visa",
+                "option2": "document",
+                "option3": "passport",
+                "option4": "id",
+                "answer": "passport"
+            },
+            {
+                "id": $CHALLENGE_ID_3,
+                "type": "FORWARD_TRANSLATION",
+                "question": "hotel",
+                "option1": "motel",
+                "option2": "restaurant",
+                "option3": "inn",
+                "option4": "hotel",
+                "answer": "hotel"
+            }]
+        """
+        private const val session2ChallengesJson = """
+            [{
+                "id": $CHALLENGE_ID_1,
+                "type": "FORWARD_TRANSLATION",
+                "question": "father",
+                "option1": "brother",
+                "option2": "sister",
+                "option3": "father",
+                "option4": "mother",
+                "answer": "father"
+            },
+            {
+                "id": $CHALLENGE_ID_2,
+                "type": "FORWARD_TRANSLATION",
+                "question": "mother",
+                "option1": "mother",
+                "option2": "aunt",
+                "option3": "sister",
+                "option4": "daughter",
+                "answer": "mother"
+            },
+            {
+                "id": $CHALLENGE_ID_3,
+                "type": "FORWARD_TRANSLATION",
+                "question": "grandmother",
+                "option1": "grandfather",
+                "option2": "grandson",
+                "option3": "granddaughter",
+                "option4": "grandmother",
+                "answer": "grandmother"
+            }]
+        """
+        private const val generalChallengesJson = """
+            [{
+                "id": $CHALLENGE_ID_1,
+                "type": "FORWARD_TRANSLATION",
+                "question": "A",
+                "option1": "A",
+                "option2": "B",
+                "option3": "C",
+                "option4": "D",
+                "answer": "A"
             }]
         """
     }

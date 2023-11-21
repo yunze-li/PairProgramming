@@ -14,7 +14,7 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
 
 /**
- * [RepoRepository] for retrieving course data.
+ * [CourseRepository] for retrieving course data.
  */
 class CourseDataRepository(
     private val courseConverter: CourseConverter,
