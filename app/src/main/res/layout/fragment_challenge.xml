@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <com.duolingo.app.ui.JuicyTextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
         app:layout_constraintVertical_chainStyle="packed"
         style="@style/H1" />
 
-    <TextView
+    <com.duolingo.app.ui.JuicyTextView
         android:id="@+id/targetWord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -49,15 +49,13 @@
         app:layout_constraintVertical_chainStyle="packed"
         style="@style/UnclickableCard"
         >
-
-        <TextView
+        <com.duolingo.app.ui.JuicyTextView
             android:id="@+id/optionText1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLines="1"
             style="@style/H1"
             tools:text="A" />
-
     </com.duolingo.app.ui.CardView>
 
     <com.duolingo.app.ui.CardView
@@ -74,7 +72,7 @@
         app:layout_constraintVertical_chainStyle="packed"
         style="@style/UnclickableCard"
         >
-        <TextView
+        <com.duolingo.app.ui.JuicyTextView
             android:id="@+id/optionText2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -97,7 +95,7 @@
         app:layout_constraintVertical_chainStyle="packed"
         style="@style/UnclickableCard"
         >
-        <TextView
+        <com.duolingo.app.ui.JuicyTextView
             android:id="@+id/optionText3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -120,13 +118,35 @@
         app:layout_constraintVertical_chainStyle="packed"
         style="@style/UnclickableCard"
         >
-        <TextView
+        <com.duolingo.app.ui.JuicyTextView
             android:id="@+id/optionText4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLines="1"
             style="@style/H1"
             tools:text="D" />
+    </com.duolingo.app.ui.CardView>
+
+    <com.duolingo.app.ui.CardView
+        android:id="@+id/errorMessageCard"
+        android:layout_height="@dimen/juicyLength7"
+        android:layout_width="0dp"
+        android:orientation="horizontal"
+        android:backgroundTint="@color/juicyStickyCardinal"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:position="top"
+        style="@style/UnclickableCard"
+        >
+        <com.duolingo.app.ui.JuicyTextView
+            android:id="@+id/errorMessageText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="@string/challenge_error_message"
+            style="@style/H1" />
     </com.duolingo.app.ui.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

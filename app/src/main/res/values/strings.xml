@@ -16,4 +16,5 @@
 
     <!-- Challenge -->
     <string name="challenge_title_prefix">Select the correct meaning of</string>
+    <string name="challenge_error_message">Maybe try again?</string>
 </resources>

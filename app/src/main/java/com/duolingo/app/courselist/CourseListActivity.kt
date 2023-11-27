@@ -8,6 +8,7 @@ import com.duolingo.app.databinding.ActivityLayoutToLoadFragmentBinding
 import com.duolingo.app.extensions.addFragment
 import com.duolingo.app.extensions.enableToolbar
 
+/** Activity of course list */
 class CourseListActivity : BaseActivity<ActivityLayoutToLoadFragmentBinding>() {
 
     override val bindingInflater: (LayoutInflater) -> ActivityLayoutToLoadFragmentBinding =
@@ -27,7 +28,7 @@ class CourseListActivity : BaseActivity<ActivityLayoutToLoadFragmentBinding>() {
 
     private fun initializeActivity(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
-            addFragment(R.id.container, CourseListFragment.newInstance())
+            addFragment(R.id.challenge_container, CourseListFragment.newInstance())
         }
     }
 }

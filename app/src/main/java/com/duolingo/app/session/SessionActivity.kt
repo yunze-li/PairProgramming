@@ -4,16 +4,14 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
-import com.duolingo.app.R
 import com.duolingo.app.base.BaseActivity
-import com.duolingo.app.challenge.ChallengeFragment
 import com.duolingo.app.databinding.ActivitySessionBinding
-import com.duolingo.app.extensions.addFragment
 import com.duolingo.app.extensions.getLongExtra
 import com.duolingo.domain.model.Session
 import com.duolingo.domain.model.id.LongId
 import javax.inject.Inject
 
+/** Activity of a learning session */
 class SessionActivity : BaseActivity<ActivitySessionBinding>() {
 
     private val sessionId: Long by lazy { getLongExtra(EXTRA_SESSION_ID) }
@@ -30,10 +28,11 @@ class SessionActivity : BaseActivity<ActivitySessionBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)
+        val sessionRouter = SessionRouter(this)
 
         viewModel.apply {
-            whileStarted(challenge) {
-                addFragment(R.id.container, ChallengeFragment.newInstance(it))
+            whileStarted(sessionRoute) {
+                it.invoke(sessionRouter)
             }
         }.configure()
     }

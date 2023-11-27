@@ -13,6 +13,7 @@ import com.duolingo.app.extensions.getLongExtra
 import com.duolingo.domain.model.Course
 import com.duolingo.domain.model.id.LongId
 
+/** Activity of all available learning sessions in a list */
 class SessionListActivity : BaseActivity<ActivityLayoutToLoadFragmentBinding>() {
 
     private val courseId: Long by lazy { getLongExtra(EXTRA_COURSE_ID) }
@@ -34,7 +35,7 @@ class SessionListActivity : BaseActivity<ActivityLayoutToLoadFragmentBinding>() 
 
     private fun initializeActivity(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
-            addFragment(R.id.container, SessionListFragment.newInstance(courseId))
+            addFragment(R.id.challenge_container, SessionListFragment.newInstance(courseId))
         }
     }
 

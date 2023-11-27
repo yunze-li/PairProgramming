@@ -9,6 +9,7 @@ import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import io.reactivex.rxjava3.core.Flowable
 
+/** View model of [SessionListFragment] */
 class SessionListViewModel
 @AssistedInject constructor(
     @Assisted private val courseId: LongId<Course>,

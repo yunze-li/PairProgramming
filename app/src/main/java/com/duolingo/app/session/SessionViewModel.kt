@@ -1,44 +1,61 @@
 package com.duolingo.app.session
 
 import com.duolingo.app.base.BaseViewModel
+import com.duolingo.app.challenge.ChallengeBridge
 import com.duolingo.domain.model.Challenge
 import com.duolingo.domain.model.Session
 import com.duolingo.domain.model.id.LongId
 import com.duolingo.domain.repository.ChallengeRepository
-import com.duolingo.domain.repository.CourseRepository
-import com.duolingo.domain.repository.SessionRepository
 import com.duolingo.rxjava.processor.RxProcessor
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import io.reactivex.rxjava3.core.Flowable
-import io.reactivex.rxjava3.core.Single
 
+/** View model of [SessionActivity] */
 class SessionViewModel
 @AssistedInject constructor(
     @Assisted private val sessionId: LongId<Session>,
+    private val challengeBridge: ChallengeBridge,
     rxProcessorFactory: RxProcessor.Factory,
     private val challengeRepository: ChallengeRepository,
+    private val sessionRouteBridge: SessionRouteBridge,
 ) : BaseViewModel() {
 
     private lateinit var challengeIterator: Iterator<Challenge>
+
+    val sessionRoute = Flowable.defer { sessionRouteBridge.route }.asConsumable()
 
     fun configure() = configureOnce {
         challengeRepository.fetchChallenges(sessionId)
             .firstElement()
             .subscribe { challenges ->
                 challengeIterator = challenges.iterator()
-                challengeProcessor.offer(challengeIterator.next())
+                getNextChallenge()?.let {
+                    sessionRouteBridge.navigate { showNextChallenge(it) }
+                }
             }.unsubscribeOnCleared()
+
+        challengeBridge.challengeCompleted.subscribe {
+            val nextChallenge = getNextChallenge()
+            if (nextChallenge != null) {
+                sessionRouteBridge.navigate { showNextChallenge(nextChallenge) }
+            } else {
+                onChallengeFinished()
+            }
+        }.unsubscribeOnCleared()
     }
 
-    private val challengeProcessor = rxProcessorFactory.behavior<Challenge>()
-    val challenge: Flowable<Challenge> = challengeProcessor.observe().asConsumable()
-
-    fun onChallengeFinished() {
-        if (!challengeIterator.hasNext()) {
-            challengeProcessor.offer(challengeIterator.next())
+    private fun getNextChallenge(): Challenge? {
+        return if (challengeIterator.hasNext()) {
+            challengeIterator.next()
+        } else {
+            null
         }
+    }
+
+    private fun onChallengeFinished() {
+        // TODO: add logic when challenge completed
     }
 
     @AssistedFactory

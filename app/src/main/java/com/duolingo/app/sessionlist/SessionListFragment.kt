@@ -8,6 +8,7 @@ import com.duolingo.app.mvvm.MvvmFragment
 import com.duolingo.domain.model.id.LongId
 import javax.inject.Inject
 
+/** Session list screen to show all available sessions */
 class SessionListFragment : MvvmFragment<FragmentSessionListBinding>(FragmentSessionListBinding::inflate) {
 
     @Inject lateinit var viewModelFactory: SessionListViewModel.Factory

@@ -5,6 +5,7 @@ import com.duolingo.app.databinding.FragmentCourseListBinding
 import com.duolingo.app.mvvm.MvvmFragment
 import javax.inject.Inject
 
+/** Course list screen of all available courses */
 class CourseListFragment : MvvmFragment<FragmentCourseListBinding>(FragmentCourseListBinding::inflate) {
 
     @Inject
